@@ -30,3 +30,19 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.date.strftime('%Y-%m-%d')}"
+
+
+class ContactUs(models.Model):
+    name=models.CharField(max_length=200, blank=True,null=True)
+    email=models.EmailField(blank=True, null=True)
+    phone=models.IntegerField()
+    message=models.TextField(max_length=500, blank=True,null=True)
+
+    class Meta:
+
+        verbose_name="Contact Us"
+        verbose_name_plural="Contact Us"
+
+    
+    def __str__(self) -> str:
+        return self.name
