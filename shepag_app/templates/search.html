@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Search {% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-primary">Search Products</h2>
+    
+    <form method="GET" action="{% url 'search' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search for products..." required value="{{ request.GET.q }}">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    {% if products %}
+        <div class="search-results">
+            <h3>Search Results:</h3>
+            <ul class="list-group">
+                {% for product in products %}
+                    <li class="list-group-item">
+                        <a href="{% url 'product_detail' product.id %}" class="text-dark">{{ product.name }}</a>
+                        <p class="mb-0">{{ product.description }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p class="text-center">No products found.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

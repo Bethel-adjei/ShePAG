@@ -64,7 +64,7 @@ def contact(request):
         contact_instance.save()
 
         # Display success message
-        messages.success(request, "Heya, we received your message, we shall revert 😙")
+        messages.success(request, "Heya, we received your message, we shall revert")
 
     context = {
         'contacts': contacts
@@ -79,6 +79,27 @@ def team(request):
     """
     template_page = 'team.html'
     return render(request, template_page)
+
+# Search Page View
+def search(request):
+    query = request.GET.get('q')  # Get the search term from the URL
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.none()  # Return no results if query is empty
+
+    context = {
+        'products': products,
+        'query': query,
+    }
+
+    return render(request, 'search.html', context)
+# Product detail 
+
+def product_detail_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)  # Get product by ID
+    return render(request, 'product_detail.html', {'product': product})
+
 
 # Testimonial page view
 def testimonial(request):

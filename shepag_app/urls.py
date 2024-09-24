@@ -9,8 +9,12 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('team/', views.team, name='team'),
     path('testimonial/', views.testimonial, name='testimonial'),
+    path('search/', views.search, name='search'),
     path('404',views.error_404, name='404'),
+    path('product/<int:product_id>/', views.product_detail_view, name='product_detail'),
 ]
+
+
 
 # Handling 404 errors
 #handler404 = 'shepag_app.views.error_404'
