@@ -4,7 +4,7 @@ from .models import Product, BlogPost, Testimonial, ContactUs
 # Register your models here.
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price')  # Display name and price in the list view
+    list_display = ('name',)  # Display name in the list view
     search_fields = ('name', 'description')  # Add search functionality
 
 class BlogPostAdmin(admin.ModelAdmin):

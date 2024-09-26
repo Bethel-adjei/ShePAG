@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="{''}" rel="icon">
+    <link href="{% static 'img/favicon.ico'%}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,7 +57,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
             <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
-                <h1 class="fw-bold text-primary m-0">F<span class="text-secondary">oo</span>dy</h1>
+                <h1 class="fw-bold text-primary m-0">S<span class="text-secondary">he</span>PAG</h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -98,20 +98,66 @@
    
 
     <!--Partnership Start-->
-    <div class="container">
-        <h2>Our Partners</h2>
-        <div class="row">
-          <div class="col-lg-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="partner bg-white text-center p-4">
-              <a href="#">
-                <img src="{% static 'img/4-bga.jpg'%}" class="img-fluid rounded-circle mb-4 team-image" alt="Partner 1">
-              </a>
+    <div class="container mt-5">
+        <h2 class="text-center">Our Partners</h2>
+        <div id="partnersCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-bs-target="#partnersCarousel" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#partnersCarousel" data-bs-slide-to="1"></li>
+                <li data-bs-target="#partnersCarousel" data-bs-slide-to="2"></li>
+            </ol>
+    
+            <!-- Carousel Items -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="partner bg-white text-center p-2">
+                                <img src="{% static 'img/4-bga.jpg' %}" class="img-fluid" alt="Partner 1">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="partner bg-white text-center p-2">
+                                <img src="{% static 'img/cbi.jpg' %}" class="img-fluid" alt="Partner 2">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="partner bg-white text-center p-2">
+                                <img src="{% static 'img/ipd.jpg' %}" class="img-fluid" alt="Partner 3">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="partner bg-white text-center p-2">
+                                <img src="{% static 'img/lab.jpg' %}" class="img-fluid" alt="Partner 4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-8 col-sm-10">
+                            <div class="partner bg-white text-center p-4">
+                                <img src="{% static 'img/sippo.jpg' %}" class="img-fluid mx-auto" alt="Partner Logo" style="max-width: 250px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          </div>
-      </div>
-
-
+    
+            <!-- Controls -->
+            <a class="carousel-control-prev" href="#partnersCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#partnersCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+    </div>
+    
 
     <!-- Partnership End-->
 

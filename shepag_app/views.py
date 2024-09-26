@@ -94,11 +94,11 @@ def search(request):
     }
 
     return render(request, 'search.html', context)
-# Product detail 
-
-def product_detail_view(request, product_id):
-    product = get_object_or_404(Product, id=product_id)  # Get product by ID
+# Product detail
+def product_detail(request, id):
+    product = get_object_or_404(Product, id=id)
     return render(request, 'product_detail.html', {'product': product})
+
 
 
 # Testimonial page view

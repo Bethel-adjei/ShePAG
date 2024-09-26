@@ -13,148 +13,157 @@
                     <p>Explore our range of premium, industrial-grade produce, meticulously sourced and processed to meet the highest standards. Designed for large-scale operations, our products deliver consistent quality, reliability, and efficiency for your manufacturing and production needs.</p>
                 </div>
             </div>
-            <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
-                <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
-                    <li class="nav-item me-2">
-                        <a class="btn btn-outline-primary border-2 active" data-bs-toggle="pill" href="#tab-1">Vegetable</a>
-                    </li>
-                    <li class="nav-item me-2">
-                        <a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-2">Fruits</a>
-                    </li>
-                    <li class="nav-item me-0">
-                        <a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-3">Fresh</a>
-                    </li>
-                </ul>
-            </div>
         </div>
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
+                    {% for product in products %}
                     <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="product-item">
                             <div class="position-relative bg-light overflow-hidden">
-                                <img class="img-fluid w-100" src="{% static 'img/product-1.jpg' %}" alt="">
+                                <img class="img-fluid w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </div>
                             <div class="text-center p-4">
-                                <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
+                                <a class="d-block h5 mb-2" href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                             </div>
                             <div class="d-flex border-top">
-                                <small class="w-50 text-center py-2">
-                                    <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                <small class="w-100 text-center py-2">
+                                    <a class="text-body" href="{% url 'product_detail' product.id %}">
+                                        <i class="fa fa-eye text-primary me-2"></i>View detail
+                                    </a>
                                 </small>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
+
+                    {% comment %} <!-- Duplicating product section 7 more times -->
+                    {% for product in products %}
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="product-item">
+                            <div class="position-relative bg-light overflow-hidden">
+                                <img class="img-fluid w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </div>
+                            <div class="text-center p-4">
+                                <a class="d-block h5 mb-2" href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="w-100 text-center py-2">
+                                    <a class="text-body" href="{% url 'product_detail' product.id %}">
+                                        <i class="fa fa-eye text-primary me-2"></i>View detail
+                                    </a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for product in products %}
                     <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="product-item">
                             <div class="position-relative bg-light overflow-hidden">
-                                <img class="img-fluid w-100" src="{% static 'img/product-2.jpg' %}" alt="">
+                                <img class="img-fluid w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </div>
                             <div class="text-center p-4">
-                                <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
+                                <a class="d-block h5 mb-2" href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                             </div>
                             <div class="d-flex border-top">
-                                <small class="w-50 text-center py-2">
-                                    <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                <small class="w-100 text-center py-2">
+                                    <a class="text-body" href="{% url 'product_detail' product.id %}">
+                                        <i class="fa fa-eye text-primary me-2"></i>View detail
+                                    </a>
                                 </small>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
+
+                    {% for product in products %}
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="product-item">
+                            <div class="position-relative bg-light overflow-hidden">
+                                <img class="img-fluid w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </div>
+                            <div class="text-center p-4">
+                                <a class="d-block h5 mb-2" href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="w-100 text-center py-2">
+                                    <a class="text-body" href="{% url 'product_detail' product.id %}">
+                                        <i class="fa fa-eye text-primary me-2"></i>View detail
+                                    </a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for product in products %}
                     <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="product-item">
                             <div class="position-relative bg-light overflow-hidden">
-                                <img class="img-fluid w-100" src="{% static 'img/product-3.jpg' %}" alt="">
+                                <img class="img-fluid w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </div>
                             <div class="text-center p-4">
-                                <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
+                                <a class="d-block h5 mb-2" href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                             </div>
                             <div class="d-flex border-top">
-                                <small class="w-50 text-center py-2">
-                                    <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                <small class="w-100 text-center py-2">
+                                    <a class="text-body" href="{% url 'product_detail' product.id %}">
+                                        <i class="fa fa-eye text-primary me-2"></i>View detail
+                                    </a>
                                 </small>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
+
+                    {% for product in products %}
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="product-item">
+                            <div class="position-relative bg-light overflow-hidden">
+                                <img class="img-fluid w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </div>
+                            <div class="text-center p-4">
+                                <a class="d-block h5 mb-2" href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="w-100 text-center py-2">
+                                    <a class="text-body" href="{% url 'product_detail' product.id %}">
+                                        <i class="fa fa-eye text-primary me-2"></i>View detail
+                                    </a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for product in products %}
                     <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                         <div class="product-item">
                             <div class="position-relative bg-light overflow-hidden">
-                                <img class="img-fluid w-100" src="{% static 'img/product-4.jpg' %}" alt="">
+                                <img class="img-fluid w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </div>
                             <div class="text-center p-4">
-                                <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
+                                <a class="d-block h5 mb-2" href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                             </div>
                             <div class="d-flex border-top">
-                                <small class="w-50 text-center py-2">
-                                    <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                <small class="w-100 text-center py-2">
+                                    <a class="text-body" href="{% url 'product_detail' product.id %}">
+                                        <i class="fa fa-eye text-primary me-2"></i>View detail
+                                    </a>
                                 </small>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="product-item">
-                            <div class="position-relative bg-light overflow-hidden">
-                                <img class="img-fluid w-100" src="{% static 'img/product-5.jpg' %}" alt="">
-                            </div>
-                            <div class="text-center p-4">
-                                <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
-                            </div>
-                            <div class="d-flex border-top">
-                                <small class="w-50 text-center py-2">
-                                    <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="product-item">
-                            <div class="position-relative bg-light overflow-hidden">
-                                <img class="img-fluid w-100" src="{% static 'img/product-6.jpg' %}" alt="">
-                            </div>
-                            <div class="text-center p-4">
-                                <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
-                            </div>
-                            <div class="d-flex border-top">
-                                <small class="w-50 text-center py-2">
-                                    <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="product-item">
-                            <div class="position-relative bg-light overflow-hidden">
-                                <img class="img-fluid w-100" src="{% static 'img/product-7.jpg' %}" alt="">
-                            </div>
-                            <div class="text-center p-4">
-                                <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
-                            </div>
-                            <div class="d-flex border-top">
-                                <small class="w-50 text-center py-2">
-                                    <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="product-item">
-                            <div class="position-relative bg-light overflow-hidden">
-                                <img class="img-fluid w-100" src="{% static 'img/product-8.jpg' %}" alt="">
-                            </div>
-                            <div class="text-center p-4">
-                                <a class="d-block h5 mb-2" href="">Fresh Tomato</a>
-                            </div>
-                            <div class="d-flex border-top">
-                                <small class="w-50 text-center py-2">
-                                    <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> {% endcomment %}
+<!-- Product End -->
+
 
             {% comment %} <div id="tab-2" class="tab-pane fade show p-0">
                 <div class="row g-4">

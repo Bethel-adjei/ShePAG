@@ -1,10 +1,26 @@
 {% extends 'base.html' %}
-{%load static %}
+{% load static %}
+
+{% block title %}Product Details{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>{{ product.name }}</h1>
-    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 400px;">
-    <p>{{ product.description }}</p>
+<!-- Product Detail Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="display-5">{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Product Detail End -->
+   
+<!-- Back to Products Link -->
+    <a href="{% url 'product' %}" class="back-link">&larr; Back to All Products</a>
 </div>
 {% endblock %}

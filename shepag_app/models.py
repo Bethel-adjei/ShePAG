@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='products/')
 
     def __str__(self):
@@ -19,9 +18,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     published_date = models.DateTimeField(auto_now_add=True)
-    img_url = models.URLField(max_length = 200000)
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='blog_posts')
+    
 
 
     # class Meta:
