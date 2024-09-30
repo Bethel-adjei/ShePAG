@@ -14,20 +14,27 @@
     </form>
 
     {% if products %}
-        <div class="search-results">
-            <h3>Search Results:</h3>
-            <ul class="list-group">
-                {% for product in products %}
-                    <li class="list-group-item">
-                        <a href="{% url 'product_detail' product.id %}" class="text-dark">{{ product.name }}</a>
-                        <p class="mb-0">{{ product.description }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
+    <div class="search-results">
+        <h3>Search Results:</h3>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4">  <!-- Adjust column size as needed -->
+                    <div class="d-flex align-items-center">
+                        <a href="{% url 'product_detail' product.id %}" class="text-dark d-flex align-items-center">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-thumbnail me-3" style="width: 100px; height: auto;">
+                            <div>
+                                <h5 class="mb-1">{{ product.name }}</h5>
+                                <p class="mb-0">{{ product.description }}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    {% else %}
-        <p class="text-center">No products found.</p>
-    {% endif %}
-</div>
+    </div>
+{% else %}
+    <p class="text-center">No products found.</p>
+{% endif %}
 
-{% endblock %}
+
+{% endblock %} 

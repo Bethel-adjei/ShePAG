@@ -7,7 +7,7 @@
 <!-- Product Detail Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center"> <!-- Ensures vertical alignment -->
             <div class="col-lg-6">
                 <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
             </div>
@@ -19,8 +19,9 @@
     </div>
 </div>
 <!-- Product Detail End -->
-   
+
 <!-- Back to Products Link -->
+<div class="container">
     <a href="{% url 'product' %}" class="back-link">&larr; Back to All Products</a>
 </div>
 {% endblock %}

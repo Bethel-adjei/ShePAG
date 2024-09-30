@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import Product, BlogPost, Testimonial, ContactUs
 
 # Register your models here.
-
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name',)  # Display name in the list view
     search_fields = ('name', 'description')  # Add search functionality

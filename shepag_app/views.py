@@ -5,14 +5,19 @@ from django.contrib import messages
 # Home page view
 def index(request):
     """
-    View for the home page, displaying all products.
+    View for the home page, displaying all products and testimonials.
     """
-    products = Product.objects.all()  
+    products = Product.objects.all()  # Fetch all products
+    testimonials = Testimonial.objects.all()  # Fetch all testimonials
+    
+    # Combine both products and testimonials into a single context
     context = {
         'products': products,
+        'testimonials': testimonials,
     }
-    template_page = 'index.html'
-    return render(request, template_page, context)
+
+    return render(request, 'index.html', context)  # Render the template with the combined context
+
 
 # About page view
 def about(request):
@@ -102,16 +107,12 @@ def product_detail(request, id):
 
 
 # Testimonial page view
+
+
 def testimonial(request):
-    """
-    View for the testimonials page, displaying all testimonials.
-    """
-    testimonials = Testimonial.objects.all()  # Fetch all testimonials
-    context = {
-        'testimonials': testimonials,
-    }
-    template_page = 'testimonial.html'
-    return render(request, template_page, context)
+    testimonials = Testimonial.objects.all()
+    return render(request, 'testimonial.html', {'testimonials': testimonials})
+
 
 # 404 error page view
 def error_404(request):
