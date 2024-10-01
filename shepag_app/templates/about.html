@@ -98,75 +98,90 @@
     
     <!-- Feature End -->
 
-    <!-- Team Section Start -->
+  <!-- Team Section Start -->
 <section class="team-section container py-5">
     <h1 class="text-center mb-5">Meet Our Team</h1>
     <div class="row">
-        <!-- Team Member 1 -->
-        <div class="col-lg-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        {% for member in members %}
+        <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
             <div class="team-member bg-white text-center p-4">
-                <img src="{% static 'img/president.jpg'%}" class="img-fluid rounded-circle mb-4 team-image" alt="Georgina Koomson">
-                <h5 class="mb-0">Georgina Koomson</h5>
-                <p class="text-primary">President</p>
-                <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="{%url 'team'%}">Read More</a>
+                <img class="img-fluid rounded-circle mb-4" src="{{ member.image.url }}" alt="Photo of {{ member.name }}">
+                <h5 class="mb-0">{{ member.name }}</h5>
+                <p class="text-primary">{{ member.role }}</p>
+                <p>{{ member.message|truncatewords:20 }}</p>
+                <a href="{% url 'team_member_detail' member.id %}" class="btn btn-primary">Learn More About {{ member.name }}</a>
             </div>
         </div>
-        <!-- Team Member 2 -->
-        <div class="col-lg-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-member bg-white text-center p-4">
-                <img src="{% static 'img/vice_president.jpg'%}" class="img-fluid rounded-circle mb-4 team-image" alt="Felicia Mensah">
-                <h5 class="mb-0">Felicia Mensah</h5>
-                <p class="text-primary">Vice President</p>
-                <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="{%url 'team'%}">Read More</a>
-            </div>
-        </div>
-        <!-- Team Member 3 -->
-        <div class="col-lg-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-member bg-white text-center p-4">
-                <img src="{% static 'img/secretary.jpg'%}" class="img-fluid rounded-circle mb-4 team-image" alt="Zeenatu Suglo Adams">
-                <h5 class="mb-0">Zeenatu Suglo Adams</h5>
-                <p class="text-primary">Secretary</p>
-                <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="{%url 'team'%}">Read More</a>
-            </div>
-        </div>
-        <!-- Team Member 4 -->
-        <div class="col-lg-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-member bg-white text-center p-4">
-                <img src="{% static 'img/pro.jpg'%}" class="img-fluid rounded-circle mb-4 team-image" alt="Charity Maame Akua Adupong">
-                <h5 class="mb-0">Charity Maame Akua Adupong</h5>
-                <p class="text-primary">Financial Secretary and PRO</p>
-                <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="{%url 'team'%}">Read More</a>
-            </div>
-        </div>
-        <!-- Team Member 5 -->
-        <div class="col-lg-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-member bg-white text-center p-4">
-                <img src="{% static 'img/organizer_2.jpg'%}" class="img-fluid rounded-circle mb-4 team-image" alt="Alberta Oboubisa Asare">
-                <h5 class="mb-0">Alberta Oboubisa Asare</h5>
-                <p class="text-primary">Organizer</p>
-                <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="{%url 'team'%}">Read More</a>
-            </div>
-        </div>
-        <!-- Team Member 6 -->
-        <div class="col-lg-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-member bg-white text-center p-4">
-                <img src="{% static 'img/organizer_1.jpg'%}" class="img-fluid rounded-circle mb-4 team-image" alt="Fafali Azaglo">
-                <h5 class="mb-0">Fafali Azaglo</h5>
-                <p class="text-primary">Organizer</p>
-                <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="{%url 'team'%}">Read More</a>
-            </div>
-        </div>
-        <!-- Team Member 7 -->
-        <div class="col-lg-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-member bg-white text-center p-4">
-                <img src="{% static 'img/patron.jpg'%}" class="img-fluid rounded-circle mb-4 team-image" alt="Vera Osei Bonsu">
-                <h5 class="mb-0">Vera Osei Bonsu</h5>
-                <p class="text-primary">Patron</p>
-                <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="{%url 'team'%}">Read More</a>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </section>
 <!-- Team Section End -->
+
+
+<!--Partnership Start-->
+   <div class="container mt-5">
+    <h2 class="text-center">Our Partners</h2>
+    <div id="partnersCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-bs-target="#partnersCarousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#partnersCarousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#partnersCarousel" data-bs-slide-to="2"></li>
+        </ol>
+
+        <!-- Carousel Items -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/4-bga.jpg' %}" class="img-fluid" alt="Partner 1">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/cbi.jpg' %}" class="img-fluid" alt="Partner 2">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/ipd.jpg' %}" class="img-fluid" alt="Partner 3">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/lab.jpg' %}" class="img-fluid" alt="Partner 4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <div class="partner bg-white text-center p-4">
+                            <img src="{% static 'img/sippo.jpg' %}" class="img-fluid mx-auto" alt="Partner Logo" style="max-width: 250px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="carousel-control-prev" href="#partnersCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#partnersCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+</div>
+
+
+<!-- Partnership End-->
+
+
 
    {% endblock%}

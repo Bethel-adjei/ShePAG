@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+<link href="{% static 'django_summernote/summernote.css' %}" rel="stylesheet">
+<script src="{% static 'django_summernote/summernote.min.js' %}"></script>
+
+
+{% block title %}{{ member.name }} - {{ member.role }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="img-fluid rounded-circle mb-4" src="{{ member.image.url }}" alt="{{ member.name }}">
+        </div>
+        <div class="col-lg-8">
+            <h2>{{ member.name }}</h2>
+            <h4 class="text-primary">{{ member.role }}</h4>
+            <p>{{ member.message|safe }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

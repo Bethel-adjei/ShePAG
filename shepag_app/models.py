@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -46,7 +47,7 @@ class Testimonial(models.Model):
 class ContactUs(models.Model):
     name=models.CharField(max_length=200, blank=True,null=True)
     email=models.EmailField(blank=True, null=True)
-    phone=models.IntegerField()
+    subject=models.CharField(max_length=500, blank=True, null=True)
     message=models.TextField(max_length=500, blank=True,null=True)
 
     class Meta:
@@ -57,3 +58,20 @@ class ContactUs(models.Model):
     
     def __str__(self) -> str:
         return self.name
+    
+# this model is for the team members
+class TeamMembers(models.Model):
+    name = models.CharField(max_length=100)
+    role = models.CharField(max_length=100, default='Member')
+    message = models.TextField( blank=True, null=True)
+    image = models.ImageField(upload_to='teammembers/', null=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True)  # Add slug for URL
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(TeamMembers, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+

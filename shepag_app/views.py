@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, BlogPost, Testimonial, ContactUs
+from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers
 from django.contrib import messages
 
 # Home page view
@@ -59,13 +59,13 @@ def contact(request):
     """
     contacts = ContactUs.objects.all()  # Fetch all contact submissions
     if request.method == "POST":
-        name = request.POST.get('fullname')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        message = request.POST.get('message')
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        message = request.POST['message']
 
         # Save the new contact message
-        contact_instance = ContactUs(name=name, email=email, phone=phone, message=message)
+        contact_instance = ContactUs(name=name, email=email, subject=subject, message=message)
         contact_instance.save()
 
         # Display success message
@@ -79,11 +79,14 @@ def contact(request):
 
 # Team page view
 def team(request):
-    """
-    View for the 'Team' page.
-    """
-    template_page = 'team.html'
-    return render(request, template_page)
+    members = TeamMembers.objects.all()  # Fetch all team members from the database
+    return render(request, 'team.html', {'members': members})
+
+# Team Detail View
+def team_member_detail(request, id):
+    # Fetch the team member by id
+    member = get_object_or_404(TeamMembers, id=id)
+    return render(request, 'team_details.html', {'member': member})
 
 # Search Page View
 def search(request):

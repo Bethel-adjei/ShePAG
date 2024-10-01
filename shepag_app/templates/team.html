@@ -1,85 +1,19 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 {% block title %} Our Team {% endblock %}
 
 {% block content %}
-    <!-- Team Members Start -->
-    <div class="container-fluid py-6 bg-light">
-        <div class="container">
-            <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-5 mb-3">Meet Our Team</h1>
-                <p>Learn more about the dedicated team members who contribute to our success.</p>
-            </div>
-            <div class="row g-5">
-                <!-- Team Member 1 -->
-                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-member bg-white text-center p-4">
-                        <img class="img-fluid rounded-circle mb-4" src="{% static 'img/president.jpg'%}" alt="Member Image">
-                        <h5 class="mb-0">Georgina Koomson</h5>
-                        <p class="text-primary">President</p>
-                        <p>With over 20 years of experience in farming, the CEO of Ideal Providence Farms has been instrumental in the certification of organic wild shea nut collection in the Upper West Region, a historic achievement in West Africa. Since 2001, her extensive knowledge in the shea value chain has contributed to industry advancements. As a member of the Global Shea Alliance, she has played a significant role in global collaboration, driving strategic interests worldwide. Additionally, she serves as the Chairperson of Bio Ghana Network, where she actively advocate for organic production, processing, and marketing.</p>
-                    </div>
-                </div>
-                <!-- Team Member 2 -->
-                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="team-member bg-white text-center p-4">
-                        <img class="img-fluid rounded-circle mb-4" src="{% static 'img/vice_president.jpg'%}" alt="Member Image">
-                        <h5 class="mb-0">Felicia Mensah</h5>
-                        <p class="text-primary">Vice President</p>
-                        <p>The CEO of Spring-Forth Foods exports to the USA and Kenya, having developed and certified four products in four years. She is also Managing Partner at CMH Spring-Forth Business Solutions and Vice President of ShePAG, demonstrating extensive leadership. Trained in the EU's and TFO Canada's export programs, she has led international training and is a GIZ Certified Trainer specializing in digital transformation for MSMEs. Co-founder of the EOS Foundation, she empowers women in business and has won the GEA Grant, Tony Elumelu Foundation Award, and the 2018 BIZ Trend Award.</p>
-                    </div>
-                </div>
-                <!-- Team Member 3 -->
-                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.9s">
-                    <div class="team-member bg-white text-center p-4">
-                        <img class="img-fluid rounded-circle mb-4" src="{% static 'img/secretary.jpg'%}" alt="Member Image">
-                        <h5 class="mb-0">Zeenato Suglo Adams</h5>
-                        <p class="text-primary">Secretary</p>
-                        <p>She is a lecturer at Ho Technical University with a BSc and MPhil in Food Science and Technology. As CEO of Pneuma Food Scientifics Ghana and founder of Shemah Consult, she developed and marketed two certified product brands and created over 40 prototypes. She has been recognized with the Presidential Pitch Award (2018), Elevator Pitch Contest Award (2019), and Green Business Award (2021). With expertise in Quality and Food Safety Management, she has trained over 200 SMEs in GMP, Quality Assurance, and Product Development.</p>
-                    </div>
-                </div>
-                <!-- Team Member 4 -->
-                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-member bg-white text-center p-4">
-                        <img class="img-fluid rounded-circle mb-4" src="{% static 'img/pro.jpg'%}" alt="Member Image">
-                        <h5 class="mb-0">Charity Maame Akua Adupong</h5>
-                        <p class="text-primary">Financial Secretary/Pro</p>
-                        <p>Founded in 2006, Meannan Foods now offers over 32 products and employs 70% women, collaborating with over 100 smallholder farmers and major retailers like Shoprite and Game. The company has won awards for innovation and social impact, including a national egg campaign supported by the USDA and Ghana Poultry Project. With 15 years in food processing and expertise in food safety, she advocates for Ghana’s poultry industry and serves on the committee for Ghana egg standards. Her accolades include the District Agric Processor of the Year award in 2019 and publications in national newspapers.</p>
-                    </div>
-                </div>
-                <!-- Team Member 5 -->
-                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-member bg-white text-center p-4">
-                        <img class="img-fluid rounded-circle mb-4" src="{% static 'img/organizer_2.jpg'%}" alt="Member Image">
-                        <h5 class="mb-0">Alberta Oboubisa Asare</h5>
-                        <p class="text-primary">Organizer</p>
-                        <p>With over 15 years in Ghana's agricultural sector, she focus on value addition and efficient processing using technology. She has drafted agro-processing standards with GIZ/TVET/AMUUSTED and possess expertise in investment, HR, and client services. Holding an MBA in Project Management, a BSc in HRM, and an Advanced Certificate in Monitoring and Evaluation, she is affiliated with the African Women in Agriculture and African Agribusiness Incubation Network. Her skills include client service, performance management, and achieving workplace KPIs.</p>
-                    </div>
-                </div>
-                <!-- Team Member 6 -->
-                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-member bg-white text-center p-4">
-                        <img class="img-fluid rounded-circle mb-4" src="{% static 'img/organizer_1.jpg'%}"  alt="Member Image">
-                        <h5 class="mb-0">Fafali Azaglo</h5>
-                        <p class="text-primary">Organizer</p>
-                        <p>Founder and CEO of Selassie Foods, established in 1997, specializes in processing and packaging Ghanaian foods like banku mix and Hausa Koko. Originally starting as a mixed farmer, the company has successfully expanded internationally to markets in Australia, the UK, Spain, the US, Italy, and Canada. Committed to professional growth, she has invested in international food safety certification and factory upgrades. She is passionate about leveraging local food products to meet global demands and serve the diaspora.</p>
-                    </div>
-                </div>
-                <!-- Team Member 7 -->
-                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-member bg-white text-center p-4">
-                        <img class="img-fluid rounded-circle mb-4" src="{% static 'img/patron.jpg'%}" alt="Member Image">
-                        <h5 class="mb-0">Vera Osei Bonsu</h5>
-                        <p class="text-primary">Patron</p>
-                        <p>As the CEO and founder of Eat Smart Foods and Start Right Nutrition Limited, she specialize in plant-based, locally sourced baby food with over nine years of experience in the industry. Recognized as a Nutrition Champion for Ghana, she authored the "Start Right" recipe book and have been honored as the most outstanding woman in Food and Nutrition in Ghana. Holding a First-Class Bachelor's degree in Political Science, Sociology, and Psychology from the University of Ghana, she aims to provide sustainable, healthy nourishment for children across Africa. Her businesses not only offer fortified baby food options but also create jobs for 10 employees.</p>
-                    </div>
-                </div>
-            </div>
+<div class="row">
+    {% for member in members %}
+    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="team-member bg-white text-center p-4">
+            <img class="img-fluid rounded-circle mb-4" src="{{ member.image.url }}" alt="{{ member.name }}">
+            <h5 class="mb-0">{{ member.name }}</h5>
+            <p class="text-primary">{{ member.role }}</p>
+            <p>{{ member.message|truncatewords:20 }}</p>
+            <a href="{% url 'team_member_detail' member.id %}">Learn More About {{ member.name }}</a>
         </div>
     </div>
-
-
-    <!-- Team Members End -->
-
-
-{% endblock%}
+    {% endfor %}
+</div>
+{% endblock %}

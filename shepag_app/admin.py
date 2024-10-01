@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Product, BlogPost, Testimonial, ContactUs
+from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers
+from django_summernote.widgets import SummernoteWidget 
+from django.db import models 
 
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
@@ -16,10 +18,23 @@ class TestimonialAdmin(admin.ModelAdmin):
     search_fields = ('name', 'message')  # Add search functionality
 
 class ContactUsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'phone')  # Display name, email, and phone
+    list_display = ('name', 'email', 'subject')  # Display name, email, and phone
     search_fields = ('name', 'email')  # Add search functionality
     list_filter = ('email',)  # Add a filter by email
 
+
+class TeamMembersAdmin(admin.ModelAdmin):
+    list_display = ('name', 'role', 'message', 'image')  # Fields to display in the list view
+    search_fields = ('name', 'role')  # Add search functionality
+    list_filter = ('role',)  # Add a filter for the 'role' field
+    fields = ('name', 'role', 'message', 'image')  # Explicitly show these fields in the form
+
+    formfield_overrides = { 
+            models.TextField: {'widget': SummernoteWidget}, 
+            
+     } 
+admin.site.register(TeamMembers, TeamMembersAdmin)
+     
 # Register the models with their custom admin classes
 admin.site.register(Product, ProductAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
