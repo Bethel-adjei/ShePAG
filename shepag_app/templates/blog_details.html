@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1>{{ post.title }}</h1>
+            <p><small>Published on {{ post.published_date|date:"F j, Y" }}</small></p>
+            {% if post.image %}
+                <img class="img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
+            {% endif %}
+            <p>{{ post.content }}</p>
+            <p><strong>Estimated Reading Time:</strong> {{ post.reading_time }} minutes</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -21,12 +21,8 @@ def index(request):
 
 # About page view
 def about(request):
-    """
-    View for the 'About Us' page.
-    """
-    context = {}
-    template_page = 'about.html'
-    return render(request, template_page, context)
+    members = TeamMembers.objects.all()  # Retrieve all team members
+    return render(request, 'about.html', {'members': members}) 
 
 # Product page view
 def product(request):
@@ -42,15 +38,14 @@ def product(request):
 
 # Blog page view
 def blog(request):
-    """
-    View for the blog page, displaying all blog posts.
-    """
-    blog_posts = BlogPost.objects.all()  # Fetch all blog posts
-    context = {
-        'blog_posts': blog_posts,
-    }
-    template_page = 'blog.html'
-    return render(request, template_page, context)
+    blog_posts = BlogPost.objects.all()
+    return render(request, 'blog.html', {'blog_posts': blog_posts})
+
+# Blog Detail page view
+def blog_detail(request, pk):
+    post = get_object_or_404(BlogPost, pk=pk)
+    return render(request, 'blog_detail.html', {'post': post})
+
 
 # Contact page view
 def contact(request):

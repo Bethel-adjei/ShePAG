@@ -15,20 +15,18 @@ class Product(models.Model):
         return self.name
 
 # Model for blog posts
+from django.db import models
+
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
+    image = models.ImageField(upload_to='blog_images/', blank=True, null=True)  # Add image field
     published_date = models.DateTimeField(auto_now_add=True)
-    
-
-
-    # class Meta:
-    #     ordering = ['-created_on']
-    #     verbose_name_plural = "Post"
-
+    reading_time = models.PositiveIntegerField(default=5)  # Add reading time (in minutes)
 
     def __str__(self):
         return self.title
+
 
 # Model for testimonials
 class Testimonial(models.Model):

@@ -37,6 +37,16 @@
             </div>
             <div class="col-md-5 text-md-end wow fadeIn" data-wow-delay="0.5s">
                 <div class="team-member">
+                    <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                        <img class="img-fluid w-100" src="{%static 'img/strength.jpg'%}">
+                    </div>
+
+
+                </div>
+            </div>
+           
+            {% comment %} <div class="col-md-5 text-md-end wow fadeIn" data-wow-delay="0.5s">
+                <div class="team-member">
                     <video class="video-display" autoplay muted controls style="width: 400px; height: 350px;">
                         <source src="{% static 'videos/trials.mp4' %}" type="video/mp4">
                         Your browser does not support the video tag.
@@ -44,7 +54,7 @@
                     
 
                 </div>
-            </div>
+            </div> {% endcomment %}
 
         </div>
     </div>
@@ -108,8 +118,8 @@
                 <img class="img-fluid rounded-circle mb-4" src="{{ member.image.url }}" alt="Photo of {{ member.name }}">
                 <h5 class="mb-0">{{ member.name }}</h5>
                 <p class="text-primary">{{ member.role }}</p>
-                <p>{{ member.message|truncatewords:20 }}</p>
-                <a href="{% url 'team_member_detail' member.id %}" class="btn btn-primary">Learn More About {{ member.name }}</a>
+                <p>{{ member.message|truncatewords:20 | safe}}</p>
+                <a href="{% url 'team_member_detail' member.id %}" class="btn btn-primary">Read More </a>
             </div>
         </div>
         {% endfor %}

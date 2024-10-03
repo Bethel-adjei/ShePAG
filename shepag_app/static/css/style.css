@@ -91,7 +91,7 @@
 
 .top-bar {
     height: 45px;
-    border-bottom: 1px solid rgba(0, 0, 0, .07);
+    border-bottom: 1px solid rgb(255, 253, 253);
 }
 
 .navbar .dropdown-toggle::after {
@@ -105,7 +105,7 @@
 
 .navbar .navbar-nav .nav-link {
     padding: 25px 15px;
-    color: #555555;
+    color: #f4f1f1;
     font-weight: 500;
     outline: none;
 }
@@ -118,7 +118,7 @@
 @media (max-width: 991.98px) {
     .navbar .navbar-nav {
         margin-top: 10px;
-        border-top: 1px solid rgba(0, 0, 0, .07);
+        border-top: 1px solid rgb(243, 240, 240);
         background: #FFFFFF;
     }
 
@@ -264,7 +264,9 @@
 .nav-pills .nav-item .btn {
     color: var(--dark);
 }
-
+.yam-page{
+    padding-top: 9em !important;
+}
 .nav-pills .nav-item .btn:hover,
 .nav-pills .nav-item .btn.active {
     color: #FFFFFF;

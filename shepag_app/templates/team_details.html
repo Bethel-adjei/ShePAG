@@ -7,6 +7,7 @@
 {% block title %}{{ member.name }} - {{ member.role }}{% endblock %}
 
 {% block content %}
+<div class="container-xxl" style="padding-top: 9em !important;">
 <div class="container py-5">
     <div class="row">
         <div class="col-lg-4">
@@ -18,5 +19,10 @@
             <p>{{ member.message|safe }}</p>
         </div>
     </div>
+</div>
+
+<!-- Back to Team Link -->
+<div class="container">
+    <a href="{% url 'team' %}" class="back-link">&larr; Back to All Team Members</a>
 </div>
 {% endblock %}

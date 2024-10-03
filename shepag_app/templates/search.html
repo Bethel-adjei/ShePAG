@@ -3,6 +3,7 @@
 {% block title %} Search {% endblock %}
 
 {% block content %}
+<div class="container-xxl" style="padding-top: 9em !important;">
 <div class="container my-5">
     <h2 class="text-primary">Search Products</h2>
     
@@ -21,10 +22,9 @@
                 <div class="col-md-4 mb-4">  <!-- Adjust column size as needed -->
                     <div class="d-flex align-items-center">
                         <a href="{% url 'product_detail' product.id %}" class="text-dark d-flex align-items-center">
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-thumbnail me-3" style="width: 100px; height: auto;">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-thumbnail me-3" style="width: 250px; height: auto;">
                             <div>
                                 <h5 class="mb-1">{{ product.name }}</h5>
-                                <p class="mb-0">{{ product.description }}</p>
                             </div>
                         </a>
                     </div>

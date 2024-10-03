@@ -1,8 +1,28 @@
 {% extends 'base.html'%}
 {% load static %}
-{% block title %} Blog {% endblock %}
+{% block title %} News {% endblock %}
 
+<!-- Blog Start -->
 {% block content %}
+<div class="container py-5">
+    <h1 class="display-5 mb-5">Latest Blog Posts</h1>
+    <div class="row g-4">
+        {% for post in posts %}
+        <div class="col-lg-4 col-md-6">
+            <div class="bg-light p-4">
+                {% if post.image %}
+                    <img class="img-fluid mb-3" src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% endif %}
+                <a href="{% url 'blog_detail' post.pk %}" class="d-block h5 lh-base mb-4">{{ post.title }}</a>
+                <p><small>Published on {{ post.published_date|date:"F j, Y" }}</small></p>
+                <p>{{ post.content|truncatewords:30 }} <a href="{% url 'blog_detail' post.pk %}">Read More</a></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Blog End -->
+
 
 
 

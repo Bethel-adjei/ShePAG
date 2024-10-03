@@ -8,10 +8,25 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('name',)  # Display name in the list view
     search_fields = ('name', 'description')  # Add search functionality
 
+    formfield_overrides = { 
+            models.TextField: {'widget': SummernoteWidget}, 
+            
+     } 
+            
+
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'published_date')  # Display title and published date
+    list_display = ('title', 'published_date', 'reading_time', 'display_image')  # Add reading time and image
     search_fields = ('title', 'content')  # Add search functionality
     list_filter = ('published_date',)  # Add a filter by published date
+
+    def display_image(self, obj):
+        if obj.image:
+            return f'<img src="{obj.image.url}" width="50" height="50" style="object-fit: cover;" />'
+        return "No Image"
+    
+    display_image.allow_tags = True  # Enable HTML rendering in the admin interface
+    display_image.short_description = 'Image'  # Label for the image field
+
 
 class TestimonialAdmin(admin.ModelAdmin):
     list_display = ('name', 'date')  # Display name and date
