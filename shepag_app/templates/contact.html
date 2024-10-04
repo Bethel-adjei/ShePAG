@@ -31,29 +31,29 @@
                 </div>
                 <div class="col-lg-7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
                     <form method="POST">
-                        {%csrf_token%}
+                        {% csrf_token %}
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
                                     <label for="name">Your Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email"  name="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="email"  name="email" class="form-control" id="email" placeholder="Your Email" required>
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" name="subject" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" name="subject" class="form-control" id="subject" placeholder="Subject" required>
                                     <label for="subject">Subject</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control"  name="message" placeholder="Leave a message here" id="message" style="height: 200px"></textarea>
+                                    <textarea class="form-control"  name="message" placeholder="Leave a message here" id="message" style="height: 200px" required></textarea>
                                     <label for="message">Message</label>
                                 </div>
                             </div>
@@ -61,18 +61,14 @@
                                 <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Send Message</button>
                             </div>
                             {% if messages %}
-                        <ul class="messages">
-                            {% for message in messages %}
-
-                            <strong class="text-success" style="color: red; font-size: 15px;">
-                                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                            </strong>
-                            {% endfor %}
-
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
                             {% endif %}
-                        </ul>
                         </div>
-                    </form>
+                    </form>                    
                 </div>
             </div>
         </div>

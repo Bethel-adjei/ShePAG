@@ -15,8 +15,6 @@ class Product(models.Model):
         return self.name
 
 # Model for blog posts
-from django.db import models
-
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -47,6 +45,7 @@ class ContactUs(models.Model):
     email=models.EmailField(blank=True, null=True)
     subject=models.CharField(max_length=500, blank=True, null=True)
     message=models.TextField(max_length=500, blank=True,null=True)
+    sent_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
 
@@ -55,7 +54,7 @@ class ContactUs(models.Model):
 
     
     def __str__(self) -> str:
-        return self.name
+        return f"Message from {self.name} ({self.email})"
     
 # this model is for the team members
 class TeamMembers(models.Model):

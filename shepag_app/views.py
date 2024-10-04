@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers
 from django.contrib import messages
-
+from django.core.mail import send_mail
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from .forms import ContactForm
 # Home page view
 def index(request):
     """
@@ -18,7 +21,7 @@ def index(request):
     }
     
     return render(request, 'index.html', context)
-
+ 
 
 
 # About page view
@@ -51,29 +54,47 @@ def blog_detail(request, pk):
 
 
 # Contact page view
+@csrf_exempt
 def contact(request):
-    """
-    View for the contact page, handles contact form submissions and displays messages.
-    """
-    contacts = ContactUs.objects.all()  # Fetch all contact submissions
-    if request.method == "POST":
-        name = request.POST['name']
-        email = request.POST['email']
-        subject = request.POST['subject']
-        message = request.POST['message']
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Extract form data
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
 
-        # Save the new contact message
-        contact_instance = ContactUs(name=name, email=email, subject=subject, message=message)
-        contact_instance.save()
+            # Save the message to the database
+            contact_message = ContactUs(
+                name=name,
+                email=email,
+                subject=subject,
+                message=message
+            )
+            contact_message.save()  # Save the message to the database
 
-        # Display success message
-        messages.success(request, "Heya, we received your message, we shall revert")
+            # Create the email content
+            email_message = f"New message from {name} ({email})\n\nSubject: {subject}\n\nMessage:\n{message}"
 
-    context = {
-        'contacts': contacts
-    }
-    template_page = 'contact.html'
-    return render(request, template_page, context)
+            # Send email notification to the admin
+            send_mail(
+                subject=f'Contact Form Submission: {subject}',
+                message=email_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=['joekwams123@gmail.com'],  # Replace with your admin email
+            )
+
+            # Add success message and clear form
+            messages.success(request, 'Your message has been sent successfully!')
+
+            return render(request, 'contact.html', {'form': ContactForm()})  # Empty form after submission
+
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form})
+
 
 # Team page view
 def team(request):

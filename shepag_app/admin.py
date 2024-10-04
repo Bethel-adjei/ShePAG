@@ -34,8 +34,8 @@ class TestimonialAdmin(admin.ModelAdmin):
     search_fields = ('name', 'message')  # Add search functionality
 
 class ContactUsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'subject')  # Display name, email, and phone
-    search_fields = ('name', 'email')  # Add search functionality
+    list_display = ('name', 'email', 'subject','message','sent_at')  # Display name, email, and phone
+    search_fields = ('name', 'email','subject')  # Add search functionality
     list_filter = ('email',)  # Add a filter by email
 
 
