@@ -134,11 +134,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # or any other directory you prefe
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = False  # Use TLS or SSL, not both
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'bethelobeng@gmail.com'
-EMAIL_HOST_PASSWORD = 'yago vsfb njby nilu'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'bethelobeng@gmail.com')  # Default email if env var not set
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'ujgn trih xqbs uqtk')  # Default empty if env var not set
 DEFAULT_FROM_EMAIL = 'joekwams123@gmail.com'
+
 
 
 # Default primary key field type
