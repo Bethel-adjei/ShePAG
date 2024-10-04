@@ -17,4 +17,49 @@
     </div>
     {% endfor %}
 </div>
+
+<!-- Certification Start -->
+<div class="container mt-5">
+    <h2 class="text-center">Certifications</h2>
+    <div id="certificationsCarousel" class="carousel slide" data-bs-ride="carousel">
+        
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <!-- Carousel Items -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/ISO 22000.png' %}" class="img-fluid" alt="ISO 22000 Certification">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/HACCP.jpeg' %}" class="img-fluid" alt="HACCP Certification">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/globalgap.png' %}" class="img-fluid" alt="Global GAP Certification">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/certified gluten free.png' %}" class="img-fluid" alt="Gluten-Free Certification">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more carousel-item sections here if needed -->
+        </div>
+    </div>
+</div>
+<!-- Certification End -->
+
 {% endblock %}

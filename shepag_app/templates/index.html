@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="carousel-item">
-                    <img class="w-100" src="{% static 'img/grouped product.png'%}" alt="Image">
+                    <img class="w-100" src="{% static 'img/product.jpg'%}" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-start">
@@ -249,27 +249,37 @@
                   
 
 
-<!--Blog Start-->
-<div class="container py-5">
-    <h1 class="display-5 mb-5">Latest News</h1>
-    <div class="row g-4">
-        {% for post in posts %}
-        <div class="col-lg-4 col-md-6">
-            <div class="bg-light p-4">
-                <img class="img-fluid mb-3" src="{{ post.image.url }}" alt="{{ post.title }}">
-                <a href="{% url 'blog_detail' post.pk %}" class="d-block h5 lh-base mb-4">{{ post.title }}</a>
-                <p><small>Published on {{ post.published_date|date:"F j, Y" }}</small></p>
-                <p>{{ post.content|truncatewords:30 }} <a href="{% url 'blog_detail' post.pk %}">Read More</a></p>
-            </div>
+<!-- Blog Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">Latest News</h1>
+            <p>Explore insightful articles and updates that delve into our industry, share knowledge, and inspire innovation. Stay informed and inspired!</p>
         </div>
-        {% endfor %}
+        <div class="row g-4">
+            {% for post in blog_posts %}
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ forloop.counter }}s">
+                {% if post.image %}
+                <img class="img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% endif %}
+                <div class="bg-light p-4">
+                    <a class="d-block h5 lh-base mb-4" href="{% url 'blog_details' post.pk %}">{{ post.title }}</a>
+                    <p>{{ post.content|truncatewords:20 | safe}}</p> <!-- Truncated content -->
+                    <div class="text-muted border-top pt-4">
+                        <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
+                        <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>{{ post.published_date|date:"d M, Y" }}</small>
+                        <small class="me-3"><i class="fa fa-clock text-primary me-2"></i>{{ post.reading_time }} min read</small> <!-- Reading time -->
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
-<!--Blog End-->
+<!-- Blog End -->
 
 
-
-   <!-- Certification Start -->
+<!-- Certification Start -->
 <div class="container mt-5">
     <h2 class="text-center">Certifications</h2>
     <div id="certificationsCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -281,43 +291,34 @@
             <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
 
-       <!-- Carousel Items -->
-<div class="carousel-inner">
-    <div class="carousel-item active">
-        <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="partner bg-white text-center p-2">
-                    <img src="{% static 'img/ISO 22000.png' %}" class="img-fluid" alt="ISO 22000 Certification">
+        <!-- Carousel Items -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/ISO 22000.png' %}" class="img-fluid" alt="ISO 22000 Certification">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/HACCP.jpeg' %}" class="img-fluid" alt="HACCP Certification">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/globalgap.png' %}" class="img-fluid" alt="Global GAP Certification">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="partner bg-white text-center p-2">
+                            <img src="{% static 'img/certified gluten free.png' %}" class="img-fluid" alt="Gluten-Free Certification">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="partner bg-white text-center p-2">
-                    <img src="{% static 'img/HACCP.jpeg' %}" class="img-fluid" alt="HACCP Certification">
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="partner bg-white text-center p-2">
-                    <img src="{% static 'img/globalgap.png' %}" class="img-fluid" alt="Global GAP Certification">
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="partner bg-white text-center p-2">
-                    <img src="{% static 'img/certified gluten free.png' %}" class="img-fluid" alt="Gluten-Free Certification">
-                </div>
-            </div>
+            <!-- Add more carousel-item sections here if needed -->
         </div>
-    </div>
-</div>
-
-        <!-- Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#certificationsCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#certificationsCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
 </div>
 <!-- Certification End -->

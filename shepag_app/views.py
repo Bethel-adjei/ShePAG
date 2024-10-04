@@ -5,18 +5,20 @@ from django.contrib import messages
 # Home page view
 def index(request):
     """
-    View for the home page, displaying all products and testimonials.
+    View for the home page, displaying all products, testimonials, and blogs.
     """
     products = Product.objects.all()  # Fetch all products
     testimonials = Testimonial.objects.all()  # Fetch all testimonials
+    blog_posts = BlogPost.objects.all()  # Fetch all blog posts
     
-    # Combine both products and testimonials into a single context
     context = {
         'products': products,
         'testimonials': testimonials,
+        'blog_posts': blog_posts,  # Pass blog posts to context
     }
+    
+    return render(request, 'index.html', context)
 
-    return render(request, 'index.html', context)  # Render the template with the combined context
 
 
 # About page view
@@ -38,13 +40,14 @@ def product(request):
 
 # Blog page view
 def blog(request):
-    blog_posts = BlogPost.objects.all()
-    return render(request, 'blog.html', {'blog_posts': blog_posts})
+    posts = BlogPost.objects.all().order_by('-published_date')
+    return render(request, 'blog.html', {'blog_posts': posts})
+
 
 # Blog Detail page view
 def blog_detail(request, pk):
     post = get_object_or_404(BlogPost, pk=pk)
-    return render(request, 'blog_detail.html', {'post': post})
+    return render(request, 'blog_details.html', {'post': post})
 
 
 # Contact page view
