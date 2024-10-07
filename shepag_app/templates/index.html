@@ -70,8 +70,8 @@
     </div>
     <!-- Carousel End -->
 
-   <!-- Product Start -->
-   <div class="container-xxl py-5">
+<!-- Product Start -->
+<div class="container-xxl py-5 gradient-bg">
     <div class="container">
         <div class="row g-0 gx-5 align-items-end">
             <div class="col-lg-6">
@@ -91,28 +91,30 @@
                                 <img class="img-fluid w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </div>
                             <div class="text-center p-4">
-                                <a class="d-block h5 mb-2" href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                                <a class="d-block h5 mb-2" href="#">{{ product.name }}</a>
                             </div>
                             <div class="d-flex border-top">
                                 <small class="w-100 text-center py-2">
                                     <a class="text-body" href="{% url 'product_detail' product.id %}">
-                                        <i class="fa fa-eye text-primary me-2"></i>View detail
+                                        <i class="fa fa-eye text-primary me-2"></i>View Detail
                                     </a>
                                 </small>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
-                        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <a class="btn btn-primary rounded-pill py-3 px-5" href="{% url 'product'%}">Browse More Products</a>
-                        </div>
-                    </div>
                 </div>
-    <!--Product End -->    
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <a class="btn btn-primary rounded-pill py-3 px-5" href="{% url 'product' %}">Browse More Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Product End -->
 
-
-     <!-- Feature Start -->
-<div class="container-fluid bg-light bg-icon py-6">
+<!-- Feature Start -->
+<div class="container-fluid bg-light bg-icon py-6 gradient-bg">
     <div class="container">
         <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
             <h1 class="display-5 mb-3">Core Values</h1>
@@ -121,7 +123,7 @@
             <!-- Empowerment Box -->
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="bg-white text-center h-100 p-2 p-xl-5">
-                    <img class="img-fluid mb-4" src="{% static 'img/empowerment.jpg'%}" alt="Empowerment">
+                    <img class="img-fluid mb-4" src="{% static 'img/empowerment.jpg' %}" alt="Empowerment">
                     <h4 class="mb-3">Empowerment</h4>
                     <p class="mb-4">Committed to empowering women in the export industry.</p>
                 </div>
@@ -130,16 +132,16 @@
             <!-- Collaboration Box -->
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="bg-white text-center h-100 p-2 p-xl-5">
-                    <img class="img-fluid mb-4" src="{% static 'img\collaboration.jpg'%}" alt="Collaboration">
+                    <img class="img-fluid mb-4" src="{% static 'img/collaboration.jpg' %}" alt="Collaboration">
                     <h4 class="mb-3">Collaboration</h4>
                     <p class="mb-4">Fostering a culture of collaboration for collective success.</p>
                 </div>
             </div>
         
-             <!-- Excellence Box -->
-             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+            <!-- Excellence Box -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="bg-white text-center h-100 p-2 p-xl-5">
-                    <img class="img-fluid mb-4" src="{% static 'img\excellence.jpg'%}" alt="Excellence">
+                    <img class="img-fluid mb-4" src="{% static 'img/excellence.jpg' %}" alt="Excellence">
                     <h4 class="mb-3">Excellence</h4>
                     <p class="mb-4">Striving for excellence in every facet of our operations.</p>
                 </div>
@@ -148,39 +150,39 @@
             <!-- Innovation Box -->
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="bg-white text-center h-100 p-2 p-xl-5">
-                    <img class="img-fluid mb-4" src="{% static 'img\innovation.jpg'%}" alt="Innovation">
+                    <img class="img-fluid mb-4" src="{% static 'img/innovation.jpg' %}" alt="Innovation">
                     <h4 class="mb-3">Innovation</h4>
                     <p class="mb-4">Driving innovation to stay at the forefront of the export market.</p>
                 </div>
             </div>
         </div>
-    
-    <!-- Feature End -->
+    </div>
+</div>
+<!-- Feature End -->
 
-    <!-- About Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="{% static 'img/women.jpg'%}">
-                    </div>
+<!-- About Start -->
+<div class="container-xxl py-5 gradient-bg">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                    <img class="img-fluid w-100" src="{% static 'img/women.jpg' %}" alt="Women Empowerment">
                 </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-5 mb-4">Empowering Women,
-                        Redefining Success,
-                        Conquering Global Horizons</h1>
-                    <p class="mb-4">ShePAG, founded in January 2024, is a pioneering association of seven visionary Ghanaian women leaders. Specializing in exporting high-quality products globally, from organic shea nuts to innovative baby foods, we are a dynamic force in the international market.</p>
-                    <p><i class="fa fa-check text-primary me-3"></i>Empowering women in agricultural and business sectors.</p>
-                    <p><i class="fa fa-check text-primary me-3"></i>New products include mango-potato puree, potato powder, dried mangoes,etc.</p>
-                    <p><i class="fa fa-check text-primary me-3"></i>The products are targeted towards the German market.</p>
-                    <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="{% url 'about'%}">Want To Know More?</a>
-                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h1 class="display-5 mb-4">Empowering Women,<br> Redefining Success,<br> Conquering Global Horizons</h1>
+                <p class="mb-4">ShePAG, founded in January 2024, is a pioneering association of seven visionary Ghanaian women leaders. Specializing in exporting high-quality products globally, from organic shea nuts to innovative baby foods, we are a dynamic force in the international market.</p>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fa fa-check text-primary me-3"></i>Empowering women in agricultural and business sectors.</li>
+                    <li class="mb-2"><i class="fa fa-check text-primary me-3"></i>New products include mango-potato puree, potato powder, dried mangoes, etc.</li>
+                    <li class="mb-2"><i class="fa fa-check text-primary me-3"></i>The products are targeted towards the German market.</li>
+                </ul>
+                <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="{% url 'about' %}">Want To Know More?</a>
             </div>
         </div>
     </div>
-    <!-- About End -->
-
+</div>
+<!-- About End -->
 
  <!-- Firm Visit Start -->
  <div class="container-fluid bg-primary bg-icon mt-5 py-6">
@@ -248,7 +250,6 @@
 <!-- Testimonial End -->
                   
 
-
 <!-- Blog Start -->
 <div class="container-xxl py-5">
     <div class="container">
@@ -278,7 +279,14 @@
 </div>
 <!-- Blog End -->
 
-
+<style>
+    /* Patterned background */
+    .bg-icon {
+        background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'); /* Example pattern */
+        background-repeat: repeat; /* Repeat the pattern */
+        background-size: auto; /* Adjust as needed */
+    }
+</style>
 <!-- Certification Start -->
 <div class="container mt-5">
     <h2 class="text-center">Certifications</h2>

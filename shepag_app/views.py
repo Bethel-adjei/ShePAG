@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers
+from django.shortcuts import render, get_object_or_404,redirect
+from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers,Subscriber
 from django.contrib import messages
-from django.core.mail import send_mail
+from django.core.mail import send_mail,EmailMultiAlternatives
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .forms import ContactForm
@@ -136,6 +136,50 @@ def testimonial(request):
     return render(request, 'testimonial.html', {'testimonials': testimonials})
 
 
+# for newsletter
+from .forms import SubscribeForm
+
+def subscribe(request):
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            # Get the email entered by the user
+            email = form.cleaned_data['email']
+            
+            # Send an email to the admin
+            subject = 'New Newsletter Subscription'
+            message = f'New user subscribed with email: {email}'
+            from_email = settings.DEFAULT_FROM_EMAIL
+            recipient_list = ['joekwams123@gmail.com']  # Replace with your admin email
+            
+            send_mail(subject, message, from_email, recipient_list)
+            
+            # Redirect after submission
+            return redirect('subscribe_thanks')  # You can create a 'Thank You' page
+    else:
+        form = SubscribeForm()
+
+    return render(request, 'subscribe', {'form': form})
+
+
+def send_newsletter(request):
+    # Prepare your newsletter content
+    subject = 'Your Monthly Newsletter'
+    message = 'Here is the content of the newsletter...'
+    from_email = settings.DEFAULT_FROM_EMAIL
+
+    # Fetch all subscribers
+    subscribers = Subscriber.objects.all()
+
+    # Send an email to each subscriber
+    for subscriber in subscribers:
+        send_mail(subject, message, from_email, [subscriber.email])
+
+    return render(request, 'newsletter_sent.html')
+
+def subscribe_thanks(request):
+    return render(request, 'subscribe_thanks.html')
+        
 # 404 error page view
 def error_404(request):
     """

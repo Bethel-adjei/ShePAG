@@ -1,24 +1,26 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 {% block title %} About Us {% endblock %}
 
 {% block content %}
     <!-- About Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5 bg-light">
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="{%static 'img/2.jpg'%}">
+                    <div class="about-img position-relative overflow-hidden rounded shadow">
+                        <img class="img-fluid w-100" src="{% static 'img/2.jpg' %}" alt="About Us Image">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-5 mb-4">Who We Are</h1>
-                    <p class="mb-4">ShePAG, founded in January 2024, is a pioneering association of seven visionary Ghanaian women leaders. Specializing in exporting high-quality products globally, from organic shea nuts to innovative baby foods, we are a dynamic force in the international market. Our mission is to redefine success and empower women in Ghana's export industry, fostering innovation and conquering new horizons.</p>
-                    <h4 class="display-5 mb-4">Mission</h4>
-                    <p class="mb-4">Empower and uplift Ghanaian women in the export sector, fostering collaboration, growth, and excellence.</p>
-                    <h4 class="display-5 mb-4">Vision</h4>
-                    <p class="mb-4">To be a leading force in the global export industry, empowering and uplifting women across Ghana.</p>
+                    <h1 class="display-5 text-primary mb-4">Who We Are</h1>
+                    <p class="lead text-muted mb-4">ShePAG, founded in January 2024, is a pioneering association of seven visionary Ghanaian women leaders. Specializing in exporting high-quality products globally, from organic shea nuts to innovative baby foods, we are a dynamic force in the international market. Our mission is to redefine success and empower women in Ghana's export industry, fostering innovation and conquering new horizons.</p>
+                    
+                    <h4 class="text-primary mb-3">Mission</h4>
+                    <p class="text-muted">Empower and uplift Ghanaian women in the export sector, fostering collaboration, growth, and excellence.</p>
+                    
+                    <h4 class="text-primary mb-3">Vision</h4>
+                    <p class="text-muted">To be a leading force in the global export industry, empowering and uplifting women across Ghana.</p>
                 </div>
             </div>
         </div>
@@ -26,100 +28,83 @@
     <!-- About End -->
 
 
-   <!-- Firm Visit Start -->
+   <!-- Our Strength Start -->
    <div class="container-fluid bg-primary bg-icon mt-5 py-6">
+        <div class="container text-white">
+            <div class="row g-5 align-items-center">
+                <div class="col-md-7 wow fadeIn" data-wow-delay="0.1s">
+                    <h1 class="display-5 mb-3">Our Strength</h1>
+                    <p>ShePAG combines diverse talents and expertise to excel in the export industry. With over 70 years of combined experience in farming and agriculture to food science, entrepreneurship, project management, and business administration, our team is poised to conquer international markets.</p>
+                </div>
+                <div class="col-md-5 text-md-end wow fadeIn" data-wow-delay="0.5s">
+                    <img class="img-fluid rounded shadow-lg" src="{% static 'img/strength.jpg' %}" alt="Our Strength">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Strength End -->
+
+
+<!-- Core Values Section Start -->
+<div class="container-fluid py-6 bg-light">
     <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-md-7 wow fadeIn" data-wow-delay="0.1s">
-                <h1 class="display-5 text-white mb-3">Our Strength</h1>
-                <p class="text-white mb-0">ShePAG combines diverse talents and expertise to excel in the export industry. Over 70 years combined experience in farming and agriculture to food science, entrepreneurship, project management and business administration, our team
-                    is poised to conquer international markets.</p>
-            </div>
-            <div class="col-md-5 text-md-end wow fadeIn" data-wow-delay="0.5s">
-                <div class="team-member">
-                    <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="{%static 'img/strength.jpg'%}">
-                    </div>
-
-
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="display-5 text-primary mb-3">Core Values</h1>
+        </div>
+        <div class="row g-4 text-center">
+            <!-- Empowerment -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-white rounded shadow-lg p-4">
+                    <img class="img-fluid mb-3 rounded-circle" src="{% static 'img/empowerment.jpg' %}" alt="Empowerment">
+                    <h4 class="text-primary">Empowerment</h4>
+                    <p class="text-muted">Committed to empowering women in the export industry.</p>
                 </div>
             </div>
-           
-            {% comment %} <div class="col-md-5 text-md-end wow fadeIn" data-wow-delay="0.5s">
-                <div class="team-member">
-                    <video class="video-display" autoplay muted controls style="width: 400px; height: 350px;">
-                        <source src="{% static 'videos/trials.mp4' %}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    
 
+            <!-- Collaboration -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="bg-white rounded shadow-lg p-4">
+                    <img class="img-fluid mb-3 rounded-circle" src="{% static 'img/collaboration.jpg' %}" alt="Collaboration">
+                    <h4 class="text-primary">Collaboration</h4>
+                    <p class="text-muted">Fostering a culture of collaboration for collective success.</p>
                 </div>
-            </div> {% endcomment %}
+            </div>
 
+            <!-- Excellence -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="bg-white rounded shadow-lg p-4">
+                    <img class="img-fluid mb-3 rounded-circle" src="{% static 'img/excellence.jpg' %}" alt="Excellence">
+                    <h4 class="text-primary">Excellence</h4>
+                    <p class="text-muted">Striving for excellence in every facet of our operations.</p>
+                </div>
+            </div>
+
+            <!-- Innovation -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                <div class="bg-white rounded shadow-lg p-4">
+                    <img class="img-fluid mb-3 rounded-circle" src="{% static 'img/innovation.jpg' %}" alt="Innovation">
+                    <h4 class="text-primary">Innovation</h4>
+                    <p class="text-muted">Driving innovation to stay at the forefront of the export market.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<!-- Firm Visit End -->
+<!-- Core Values Section End -->
 
 
-<!-- Feature Start -->
-<div class="container-fluid bg-light bg-icon py-6">
-    <div class="container">
-        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h1 class="display-5 mb-3">Core Values</h1>
-        </div>
-        <div class="row g-4">
-            <!-- Empowerment Box -->
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="bg-white text-center h-100 p-2 p-xl-5">
-                    <img class="img-fluid mb-4" src="{% static 'img/empowerment.jpg' %}" alt="">
-                    <h4 class="mb-3">Empowerment</h4>
-                    <p class="mb-4">Committed to empowering women in the export industry.</p>
-                </div>
-            </div>
-            
-            <!-- Collaboration Box -->
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="bg-white text-center h-100 p-2 p-xl-5">
-                    <img class="img-fluid mb-4" src="{% static 'img/collaboration.jpg' %}" alt="">
-                    <h4 class="mb-3">Collaboration</h4>
-                    <p class="mb-4">Fostering a culture of collaboration for collective success.</p>
-                </div>
-            </div>
-        
-             <!-- Excellence Box -->
-             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="bg-white text-center h-100 p-2 p-xl-5">
-                    <img class="img-fluid mb-4" src="{% static 'img/excellence.jpg' %}" alt="excellence">
-                    <h4 class="mb-3">Excellence</h4>
-                    <p class="mb-4">Striving for excellence in every facet of our operations.</p>
-                </div>
-            </div>
-        
-            <!-- Innovation Box -->
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="bg-white text-center h-100 p-2 p-xl-5">
-                    <img class="img-fluid mb-4" src="{% static 'img/innovation.jpg' %}" alt="">
-                    <h4 class="mb-3">Innovation</h4>
-                    <p class="mb-4">Driving innovation to stay at the forefront of the export market.</p>
-                </div>
-            </div>
-        </div>
-    
-    <!-- Feature End -->
-
-  <!-- Team Section Start -->
+<!-- Team Section Start -->
 <section class="team-section container py-5">
-    <h1 class="text-center mb-5">Meet Our Team</h1>
+    <h1 class="text-center text-primary mb-5">Meet Our Team</h1>
     <div class="row">
         {% for member in members %}
         <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-member bg-white text-center p-4">
-                <img class="img-fluid rounded-circle mb-4" src="{{ member.image.url }}" alt="Photo of {{ member.name }}">
-                <h5 class="mb-0">{{ member.name }}</h5>
-                <p class="text-primary">{{ member.role }}</p>
-                <p>{{ member.message|truncatewords:20 | safe}}</p>
-                <a href="{% url 'team_member_detail' member.id %}" class="btn btn-primary">Read More </a>
+            <div class="team-member bg-white text-center p-4 rounded shadow-lg">
+                <img class="img-fluid rounded-circle mb-4" src="{{ member.image.url }}" alt="{{ member.name }}">
+                <h5 class="mb-0 text-primary">{{ member.name }}</h5>
+                <p class="text-muted">{{ member.role }}</p>
+                <p>{{ member.message|truncatewords:20 | safe }}</p>
+                <a href="{% url 'team_member_detail' member.id %}" class="btn btn-primary">Read More</a>
             </div>
         </div>
         {% endfor %}
@@ -129,7 +114,7 @@
 
 
 <!--Partnership Start-->
-   <div class="container mt-5">
+<div class="container mt-5">
     <h2 class="text-center">Our Partners</h2>
     <div id="partnersCarousel" class="carousel slide" data-bs-ride="carousel">
         <!-- Indicators -->
@@ -192,6 +177,5 @@
 
 <!-- Partnership End-->
 
+{% endblock %}
 
-
-   {% endblock%}

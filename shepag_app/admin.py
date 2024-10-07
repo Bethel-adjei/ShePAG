@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers
+from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers,Subscriber
 from django_summernote.widgets import SummernoteWidget 
 from django.db import models 
 from django.utils.html import mark_safe
@@ -49,10 +49,14 @@ class TeamMembersAdmin(admin.ModelAdmin):
             models.TextField: {'widget': SummernoteWidget}, 
             
      } 
-admin.site.register(TeamMembers, TeamMembersAdmin)
+    
+class SubscriberAdmin(admin.ModelAdmin):
+    list_display = ['email', 'subscribed_at']    
      
 # Register the models with their custom admin classes
 admin.site.register(Product, ProductAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(ContactUs, ContactUsAdmin)
+admin.site.register(Subscriber)
+admin.site.register(TeamMembers, TeamMembersAdmin)

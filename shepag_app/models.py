@@ -36,10 +36,7 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.profession} - {self.date.strftime('%Y-%m-%d')}"
-
-
-
-
+#for contact us
 class ContactUs(models.Model):
     name=models.CharField(max_length=200, blank=True,null=True)
     email=models.EmailField(blank=True, null=True)
@@ -71,4 +68,12 @@ class TeamMembers(models.Model):
 
     def __str__(self):
         return self.name
+
+#for newsletter
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+    subscribed_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
 
