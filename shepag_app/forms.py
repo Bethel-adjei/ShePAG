@@ -10,3 +10,6 @@ class ContactForm(forms.Form):
 class SubscribeForm(forms.Form):
     email = forms.EmailField(label='Your email', max_length=100, widget=forms.EmailInput(attrs={'placeholder': 'Your email'}))
     
+class NewsletterForm(forms.Form):
+    subject = forms.CharField(max_length=255)
+    message = forms.CharField(widget=forms.Textarea)

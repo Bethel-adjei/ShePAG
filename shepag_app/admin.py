@@ -1,8 +1,11 @@
 from django.contrib import admin
-from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers,Subscriber
+from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers,Subscriber,Newsletter
 from django_summernote.widgets import SummernoteWidget 
 from django.db import models 
 from django.utils.html import mark_safe
+from django.core.mail import send_mail
+from django.conf import settings
+from django.utils.html import strip_tags
 
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
@@ -52,6 +55,33 @@ class TeamMembersAdmin(admin.ModelAdmin):
     
 class SubscriberAdmin(admin.ModelAdmin):
     list_display = ['email', 'subscribed_at']    
+
+
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ('subject', 'created_at')
+    
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+
+        # Get all subscribers' email addresses
+        subscribers = Subscriber.objects.values_list('email', flat=True)
+
+        # Strip HTML tags from the message (Summernote content)
+        plain_message = strip_tags(obj.message)
+
+        # Send the newsletter to all subscribers as plain text
+        send_mail(
+            subject=obj.subject,
+            message=plain_message,  # Plain text message
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=subscribers,
+            fail_silently=False,
+        )
+
+    formfield_overrides = { 
+        models.TextField: {'widget': SummernoteWidget},  
+    }
+
      
 # Register the models with their custom admin classes
 admin.site.register(Product, ProductAdmin)
@@ -60,3 +90,4 @@ admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(ContactUs, ContactUsAdmin)
 admin.site.register(Subscriber)
 admin.site.register(TeamMembers, TeamMembersAdmin)
+admin.site.register(Newsletter, NewsletterAdmin)

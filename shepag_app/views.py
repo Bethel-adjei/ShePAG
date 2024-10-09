@@ -4,7 +4,10 @@ from django.contrib import messages
 from django.core.mail import send_mail,EmailMultiAlternatives
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from .forms import ContactForm
+from .forms import ContactForm,NewsletterForm,SubscribeForm
+from django.core.mail import EmailMessage
+
+
 # Home page view
 def index(request):
     """
@@ -137,45 +140,62 @@ def testimonial(request):
 
 
 # for newsletter
-from .forms import SubscribeForm
 
 def subscribe(request):
     if request.method == 'POST':
         form = SubscribeForm(request.POST)
         if form.is_valid():
-            # Get the email entered by the user
             email = form.cleaned_data['email']
             
-            # Send an email to the admin
-            subject = 'New Newsletter Subscription'
-            message = f'New user subscribed with email: {email}'
-            from_email = settings.DEFAULT_FROM_EMAIL
-            recipient_list = ['joekwams123@gmail.com']  # Replace with your admin email
-            
-            send_mail(subject, message, from_email, recipient_list)
+            # Save the email to the database
+            subscriber, created = Subscriber.objects.get_or_create(email=email)
+
+            if created:
+                # Send an email to the admin
+                subject = 'New Newsletter Subscription'
+                message = f'New user subscribed with email: {email}'
+                from_email = settings.DEFAULT_FROM_EMAIL
+                recipient_list = ['joekwams123@gmail.com']  # Replace with your admin email
+                
+                send_mail(subject, message, from_email, recipient_list)
             
             # Redirect after submission
-            return redirect('subscribe_thanks')  # You can create a 'Thank You' page
+            return redirect('subscribe_thanks')
     else:
         form = SubscribeForm()
 
-    return render(request, 'subscribe', {'form': form})
+    return render(request, 'subscribe.html', {'form': form})
+
 
 
 def send_newsletter(request):
-    # Prepare your newsletter content
-    subject = 'Your Monthly Newsletter'
-    message = 'Here is the content of the newsletter...'
-    from_email = settings.DEFAULT_FROM_EMAIL
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            from_email = settings.DEFAULT_FROM_EMAIL
 
-    # Fetch all subscribers
-    subscribers = Subscriber.objects.all()
+            # Get all subscriber emails for BCC
+            subscribers = Subscriber.objects.values_list('email', flat=True)
+            
+            # Create the email with 'me' as the recipient and BCC all subscribers
+            email = EmailMessage(
+                subject=subject,
+                body=message,
+                from_email=from_email,
+                to=['joekwams123@gmail.com'],  # Replace with your email so it shows 'me'
+                bcc=subscribers
+            )
+            email.content_subtype = 'html'  # Set content type to HTML
+            email.send(fail_silently=False)
 
-    # Send an email to each subscriber
-    for subscriber in subscribers:
-        send_mail(subject, message, from_email, [subscriber.email])
+            return redirect('newsletter_sent')  # Redirect after sending the newsletter
+    else:
+        form = NewsletterForm()
 
-    return render(request, 'newsletter_sent.html')
+    return render(request, 'send_newsletter.html', {'form': form})
+
 
 def subscribe_thanks(request):
     return render(request, 'subscribe_thanks.html')
