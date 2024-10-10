@@ -4,18 +4,19 @@
 
 {% block content %}
 <div class="container-xxl" style="padding-top: 9em !important;">
-<div class="row">
-    {% for member in members %}
-    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-        <div class="team-member bg-white text-center p-4">
-            <img class="img-fluid rounded-circle mb-4" src="{{ member.image.url }}" alt="{{ member.name }}">
-            <h5 class="mb-0">{{ member.name }}</h5>
-            <p class="text-primary">{{ member.role }}</p>
-            <p>{{ member.message|truncatewords:20 |safe }}</p>
-            <a href="{% url 'team_member_detail' member.id %}">Read More</a>
+    <div class="row">
+        {% for member in members %}
+        <div class="col-lg-4 mb-4 d-flex align-items-stretch"> <!-- Added Flexbox alignment -->
+            <div class="team-member bg-white text-center p-4 d-flex flex-column"> <!-- Flexbox for the card -->
+                <img class="img-fluid rounded-circle mb-4" src="{{ member.image.url }}" alt="{{ member.name }}">
+                <h5 class="mb-0">{{ member.name }}</h5>
+                <p class="text-primary">{{ member.role }}</p>
+                <p>{{ member.message|truncatewords:20 |safe }}</p>
+                <a href="{% url 'team_member_detail' member.id %}" class="btn btn-primary mt-auto">Read More</a> <!-- Button aligned at bottom -->
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
 <!-- Certification Start -->

@@ -45,52 +45,53 @@
     <!-- Our Strength End -->
 
 
-<!-- Core Values Section Start -->
-<div class="container-fluid py-6 bg-light">
+<!-- Feature Start -->
+<div class="container-fluid bg-light bg-icon py-6 gradient-bg">
     <div class="container">
-        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <h1 class="display-5 text-primary mb-3">Core Values</h1>
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">Core Values</h1>
         </div>
-        <div class="row g-4 text-center">
-            <!-- Empowerment -->
+        <div class="row g-4">
+            <!-- Empowerment Box -->
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="bg-white rounded shadow-lg p-4">
-                    <img class="img-fluid mb-3 rounded-circle" src="{% static 'img/empowerment.jpg' %}" alt="Empowerment">
-                    <h4 class="text-primary">Empowerment</h4>
-                    <p class="text-muted">Committed to empowering women in the export industry.</p>
+                <div class="bg-white text-center h-100 p-2 p-xl-5">
+                    <img class="img-fluid mb-4" src="{% static 'img/empowerment.jpg' %}" alt="Empowerment">
+                    <h4 class="mb-3">Empowerment</h4>
+                    <p class="mb-4">Committed to empowering women in the export industry.</p>
                 </div>
             </div>
-
-            <!-- Collaboration -->
+            
+            <!-- Collaboration Box -->
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="bg-white rounded shadow-lg p-4">
-                    <img class="img-fluid mb-3 rounded-circle" src="{% static 'img/collaboration.jpg' %}" alt="Collaboration">
-                    <h4 class="text-primary">Collaboration</h4>
-                    <p class="text-muted">Fostering a culture of collaboration for collective success.</p>
+                <div class="bg-white text-center h-100 p-2 p-xl-5">
+                    <img class="img-fluid mb-4" src="{% static 'img/collaboration.jpg' %}" alt="Collaboration">
+                    <h4 class="mb-3">Collaboration</h4>
+                    <p class="mb-4">Fostering a culture of collaboration for collective success.</p>
                 </div>
             </div>
-
-            <!-- Excellence -->
+        
+            <!-- Excellence Box -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="bg-white text-center h-100 p-2 p-xl-5">
+                    <img class="img-fluid mb-4" src="{% static 'img/excellence.jpg' %}" alt="Excellence">
+                    <h4 class="mb-3">Excellence</h4>
+                    <p class="mb-4">Striving for excellence in every facet of our operations.</p>
+                </div>
+            </div>
+        
+            <!-- Innovation Box -->
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="bg-white rounded shadow-lg p-4">
-                    <img class="img-fluid mb-3 rounded-circle" src="{% static 'img/excellence.jpg' %}" alt="Excellence">
-                    <h4 class="text-primary">Excellence</h4>
-                    <p class="text-muted">Striving for excellence in every facet of our operations.</p>
-                </div>
-            </div>
-
-            <!-- Innovation -->
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-                <div class="bg-white rounded shadow-lg p-4">
-                    <img class="img-fluid mb-3 rounded-circle" src="{% static 'img/innovation.jpg' %}" alt="Innovation">
-                    <h4 class="text-primary">Innovation</h4>
-                    <p class="text-muted">Driving innovation to stay at the forefront of the export market.</p>
+                <div class="bg-white text-center h-100 p-2 p-xl-5">
+                    <img class="img-fluid mb-4" src="{% static 'img/innovation.jpg' %}" alt="Innovation">
+                    <h4 class="mb-3">Innovation</h4>
+                    <p class="mb-4">Driving innovation to stay at the forefront of the export market.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Core Values Section End -->
+<!-- Feature End -->
+
 
 
 <!-- Team Section Start -->
@@ -98,13 +99,13 @@
     <h1 class="text-center text-primary mb-5">Meet Our Team</h1>
     <div class="row">
         {% for member in members %}
-        <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-member bg-white text-center p-4 rounded shadow-lg">
+        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch"> <!-- Ensure Flexbox stretches columns -->
+            <div class="team-member bg-white text-center p-4 rounded shadow-lg d-flex flex-column justify-content-between"> <!-- Added flex-column and justify-content-between -->
                 <img class="img-fluid rounded-circle mb-4" src="{{ member.image.url }}" alt="{{ member.name }}">
                 <h5 class="mb-0 text-primary">{{ member.name }}</h5>
                 <p class="text-muted">{{ member.role }}</p>
                 <p>{{ member.message|truncatewords:20 | safe }}</p>
-                <a href="{% url 'team_member_detail' member.id %}" class="btn btn-primary">Read More</a>
+                <a href="{% url 'team_member_detail' member.id %}" class="btn btn-primary mt-auto">Read More</a>
             </div>
         </div>
         {% endfor %}
@@ -113,9 +114,9 @@
 <!-- Team Section End -->
 
 
-<!--Partnership Start-->
+<!-- Partnership Start -->
 <div class="container mt-5">
-    <h2 class="text-center">Our Partners</h2>
+    <h2 class="text-center mb-4">Our Partners</h2>
     <div id="partnersCarousel" class="carousel slide" data-bs-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -126,36 +127,38 @@
 
         <!-- Carousel Items -->
         <div class="carousel-inner">
+            <!-- First Slide with Multiple Images -->
             <div class="carousel-item active">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="partner bg-white text-center p-2">
-                            <img src="{% static 'img/4-bga.jpg' %}" class="img-fluid" alt="Partner 1">
+                            <img src="{% static 'img/4-bga.jpg' %}" class="partner-img img-fluid mx-auto" alt="Partner 1">
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="partner bg-white text-center p-2">
-                            <img src="{% static 'img/cbi.jpg' %}" class="img-fluid" alt="Partner 2">
+                            <img src="{% static 'img/cbi.jpg' %}" class="partner-img img-fluid mx-auto" alt="Partner 2">
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="partner bg-white text-center p-2">
-                            <img src="{% static 'img/ipd.jpg' %}" class="img-fluid" alt="Partner 3">
+                            <img src="{% static 'img/ipd.jpg' %}" class="partner-img img-fluid mx-auto" alt="Partner 3">
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="partner bg-white text-center p-2">
-                            <img src="{% static 'img/lab.jpg' %}" class="img-fluid" alt="Partner 4">
+                            <img src="{% static 'img/lab.jpg' %}" class="partner-img img-fluid mx-auto" alt="Partner 4">
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Second Slide with One Large Image -->
             <div class="carousel-item">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 col-md-8 col-sm-10">
                         <div class="partner bg-white text-center p-4">
-                            <img src="{% static 'img/sippo.jpg' %}" class="img-fluid mx-auto" alt="Partner Logo" style="max-width: 250px;">
+                            <img src="{% static 'img/sippo.jpg' %}" class="partner-img img-fluid mx-auto" alt="Partner 5">
                         </div>
                     </div>
                 </div>
@@ -173,9 +176,8 @@
         </a>
     </div>
 </div>
+<!-- Partnership End -->
 
-
-<!-- Partnership End-->
 
 {% endblock %}
 

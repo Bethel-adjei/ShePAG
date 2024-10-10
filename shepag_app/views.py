@@ -10,8 +10,13 @@ from django.core.mail import EmailMessage
 
 # Home page view
 def index(request):
-    """
-    View for the home page, displaying all products, testimonials, and blogs.
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+
+    Returns:
+        _type_: _description_
     """
     products = Product.objects.all()  # Fetch all products
     testimonials = Testimonial.objects.all()  # Fetch all testimonials
@@ -166,35 +171,42 @@ def subscribe(request):
 
     return render(request, 'subscribe.html', {'form': form})
 
-
-
 def send_newsletter(request):
     if request.method == 'POST':
         form = NewsletterForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            from_email = settings.DEFAULT_FROM_EMAIL
-
-            # Get all subscriber emails for BCC
+            from_email = form.cleaned_data['from_email']
+            
+            # Get the list of subscribers
             subscribers = Subscriber.objects.values_list('email', flat=True)
             
-            # Create the email with 'me' as the recipient and BCC all subscribers
+            # Create EmailMessage instance
             email = EmailMessage(
                 subject=subject,
                 body=message,
                 from_email=from_email,
-                to=['joekwams123@gmail.com'],  # Replace with your email so it shows 'me'
-                bcc=subscribers
+                to=['bethelobeng@gmail.com'],  # Replace with your own email so it only shows 'me'
+                bcc=list(subscribers)  # All recipients in BCC
             )
-            email.content_subtype = 'html'  # Set content type to HTML
-            email.send(fail_silently=False)
+            
+            # Set content type to HTML
+            email.content_subtype = 'html'
+            
+            try:
+                email.send(fail_silently=False)
+                return redirect('newsletter_sent')
+            except Exception as e:
+                print(f"Error sending email: {e}")
+                return render(request, 'send_newsletter.html', {'form': form, 'error': 'Email could not be sent'})
 
-            return redirect('newsletter_sent')  # Redirect after sending the newsletter
     else:
         form = NewsletterForm()
 
     return render(request, 'send_newsletter.html', {'form': form})
+
+
 
 
 def subscribe_thanks(request):

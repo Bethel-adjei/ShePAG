@@ -76,7 +76,7 @@
         <div class="row g-0 gx-5 align-items-end">
             <div class="col-lg-6">
                 <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                    <h1 class="display-5 mb-3">Our Ingredients</h1>
+                    <h1 class="display-5 mb-3">Our Products</h1>
                     <p>Explore our range of premium, industrial-grade produce, meticulously sourced and processed to meet the highest standards. Designed for large-scale operations, our products deliver consistent quality, reliability, and efficiency for your manufacturing and production needs.</p>
                 </div>
             </div>
@@ -185,25 +185,25 @@
 <!-- About End -->
 
  <!-- Firm Visit Start -->
- <div class="container-fluid bg-primary bg-icon mt-5 py-6">
+<div class="container-fluid bg-primary bg-icon mt-5 py-6 position-relative">
+    <div class="overlay"></div> <!-- Overlay for dimming effect -->
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-md-7 wow fadeIn" data-wow-delay="0.1s">
                 <h1 class="display-5 text-white mb-3">Welcome to ShePAG</h1>
-                <p class="text-white mb-0">ShePAG combines diverse talents and expertise to excel in the export industry. Over 70 years combined experience in farming and agriculture to food science, entrepreneurship, project management and business administration, our team
-                    is poised to conquer international markets.</p>
+                <p class="text-white mb-0">ShePAG combines diverse talents and expertise to excel in the export industry. Over 70 years combined experience in farming and agriculture to food science, entrepreneurship, project management and business administration, our team is poised to conquer international markets.</p>
             </div>
             <div class="col-md-5 text-md-end wow fadeIn" data-wow-delay="0.5s">
                 <div class="team-member">
                     <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="{%static 'img/strength.jpg'%}">
+                        <img class="img-fluid w-100" src="{% static 'img/strength.jpg' %}">
                     </div>
-
-
                 </div>
             </div>
-           
-            {% comment %} <div class="col-md-5 text-md-end wow fadeIn" data-wow-delay="0.5s">
+        </div>
+    </div>
+</div>
+             {% comment %} <div class="col-md-5 text-md-end wow fadeIn" data-wow-delay="0.5s">
                 <div class="team-member">
                     <video class="video-display" autoplay muted controls style="width: 400px; height: 350px;">
                         <source src="{% static 'videos/SHEPAG.mp4' %}" type="video/mp4">
@@ -257,16 +257,16 @@
             <h1 class="display-5 mb-3">Latest News</h1>
             <p>Explore insightful articles and updates that delve into our industry, share knowledge, and inspire innovation. Stay informed and inspired!</p>
         </div>
-        <div class="row g-4">
+        <div class="row g-4 d-flex align-items-stretch"> <!-- Added d-flex align-items-stretch -->
             {% for post in blog_posts %}
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ forloop.counter }}s">
-                {% if post.image %}
-                <img class="img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
-                {% endif %}
-                <div class="bg-light p-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp d-flex" data-wow-delay="0.{{ forloop.counter }}s"> <!-- Added d-flex -->
+                <div class="d-flex flex-column bg-light p-4 w-100"> <!-- Added d-flex flex-column -->
+                    {% if post.image %}
+                    <img class="img-fluid mb-3" src="{{ post.image.url }}" alt="{{ post.title }}">
+                    {% endif %}
                     <a class="d-block h5 lh-base mb-4" href="{% url 'blog_details' post.pk %}">{{ post.title }}</a>
                     <p>{{ post.content|truncatewords:20 | safe}}</p> <!-- Truncated content -->
-                    <div class="text-muted border-top pt-4">
+                    <div class="text-muted border-top pt-4 mt-auto"> <!-- Added mt-auto to push content to bottom -->
                         <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
                         <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>{{ post.published_date|date:"d M, Y" }}</small>
                         <small class="me-3"><i class="fa fa-clock text-primary me-2"></i>{{ post.reading_time }} min read</small> <!-- Reading time -->
@@ -304,32 +304,32 @@
             <div class="carousel-item active">
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <div class="partner bg-white text-center p-2">
-                            <img src="{% static 'img/ISO 22000.png' %}" class="img-fluid" alt="ISO 22000 Certification">
+                        <div class="partner text-center p-2">
+                            <img src="{% static 'img/ISO 22000.png' %}" class="certification-img img-fluid" alt="ISO 22000 Certification">
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <div class="partner bg-white text-center p-2">
-                            <img src="{% static 'img/HACCP.jpeg' %}" class="img-fluid" alt="HACCP Certification">
+                        <div class="partner text-center p-2">
+                            <img src="{% static 'img/HACCP.jpeg' %}" class="certification-img img-fluid" alt="HACCP Certification">
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <div class="partner bg-white text-center p-2">
-                            <img src="{% static 'img/globalgap.png' %}" class="img-fluid" alt="Global GAP Certification">
+                        <div class="partner text-center p-2">
+                            <img src="{% static 'img/globalgap.png' %}" class="certification-img img-fluid" alt="Global GAP Certification">
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <div class="partner bg-white text-center p-2">
-                            <img src="{% static 'img/certified gluten free.png' %}" class="img-fluid" alt="Gluten-Free Certification">
+                        <div class="partner text-center p-2">
+                            <img src="{% static 'img/certified gluten free.png' %}" class="certification-img img-fluid" alt="Gluten-Free Certification">
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Add more carousel-item sections here if needed -->
         </div>
     </div>
 </div>
 <!-- Certification End -->
+
 
 
 {% endblock %}    

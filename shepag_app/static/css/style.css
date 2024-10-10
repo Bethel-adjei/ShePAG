@@ -424,3 +424,93 @@
     width: 300px;
     height: 400px;
 }
+
+.team-member {
+    height: 100%; /* Ensure full height for Flexbox alignment */
+    min-height: 400px; /* Optional: Adjust to ensure minimum uniform height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out content evenly */
+}
+
+.col-lg-4 {
+    display: flex;
+    align-items: stretch; /* Ensure all columns are the same height */
+}
+
+/* Partner images uniform size */
+.partner-img {
+    max-width: 100%;  /* Ensure images are responsive */
+    max-height: 150px; /* Set a maximum height for all images */
+    object-fit: contain; /* Ensure the image fits within the box without distortion */
+    padding: 10px;
+}
+
+/* Ensure partner cards have equal heights */
+.partner {
+    height: 200px; /* Adjust this value based on your design preference */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Carousel Controls Styling */
+.carousel-control-prev, .carousel-control-next {
+    width: 5%; /* Make controls less intrusive */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .partner {
+        height: auto; /* Adjust for smaller screens */
+    }
+}
+/* Certification images uniform size */
+.certification-img {
+    max-width: 100%;  /* Ensure the images are responsive */
+    max-height: 150px; /* Set a maximum height for all images */
+    object-fit: contain; /* Make sure the image retains its aspect ratio */
+    padding: 10px; /* Add padding to create space around the images */
+}
+
+/* Ensure certification cards have equal height */
+.partner {
+    height: 200px; /* Adjust the container height to keep consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa; /* Optional: Light background to ensure visibility */
+}
+
+/* Carousel Controls Styling */
+.carousel-control-prev, .carousel-control-next {
+    width: 5%; /* Reduce control sizes to make them less intrusive */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .partner {
+        height: auto; /* Adjust for smaller screens */
+    }
+}
+
+.container-fluid.bg-primary.bg-icon {
+    position: relative; /* Ensure positioning context for the overlay */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 128, 0, 0.5); /* Change the RGBA values to adjust the dimming effect */
+    z-index: 1; /* Place the overlay behind the text */
+}
+
+.container-fluid .container {
+    position: relative;
+    z-index: 2; /* Ensure the content is above the overlay */
+}
+
+

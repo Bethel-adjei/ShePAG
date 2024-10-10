@@ -10,16 +10,16 @@
             <h1 class="display-5 mb-3">Latest News</h1>
             <p>Explore insightful articles and updates that delve into our industry, share knowledge, and inspire innovation. Stay informed and inspired!</p>
         </div>
-        <div class="row g-4">
+        <div class="row g-4 d-flex align-items-stretch"> <!-- Added d-flex align-items-stretch -->
             {% for post in blog_posts %}
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ forloop.counter }}s">
-                {% if post.image %}
-                <img class="img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
-                {% endif %}
-                <div class="bg-light p-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp d-flex" data-wow-delay="0.{{ forloop.counter }}s"> <!-- Added d-flex -->
+                <div class="d-flex flex-column bg-light p-4 w-100"> <!-- Added d-flex flex-column -->
+                    {% if post.image %}
+                    <img class="img-fluid mb-3" src="{{ post.image.url }}" alt="{{ post.title }}">
+                    {% endif %}
                     <a class="d-block h5 lh-base mb-4" href="{% url 'blog_details' post.pk %}">{{ post.title }}</a>
-                    <p>{{ post.content|truncatewords:20| safe }}</p> <!-- Truncated content -->
-                    <div class="text-muted border-top pt-4">
+                    <p>{{ post.content|truncatewords:20 | safe}}</p> <!-- Truncated content -->
+                    <div class="text-muted border-top pt-4 mt-auto"> <!-- Added mt-auto to push content to bottom -->
                         <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
                         <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>{{ post.published_date|date:"d M, Y" }}</small>
                         <small class="me-3"><i class="fa fa-clock text-primary me-2"></i>{{ post.reading_time }} min read</small> <!-- Reading time -->
@@ -31,6 +31,7 @@
     </div>
 </div>
 <!-- Blog End -->
+
 
 <!-- Certification Start -->
 <div class="container mt-5">
