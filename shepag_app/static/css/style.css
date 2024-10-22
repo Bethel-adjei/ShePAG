@@ -425,18 +425,21 @@
     height: 400px;
 }
 
-.team-member {
-    height: 100%; /* Ensure full height for Flexbox alignment */
-    min-height: 400px; /* Optional: Adjust to ensure minimum uniform height */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Space out content evenly */
+.image-wrapper {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #f1f1f1;
 }
 
-.col-lg-4 {
-    display: flex;
-    align-items: stretch; /* Ensure all columns are the same height */
+.team-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This will ensure the image fits into the circle */
+    object-position: center; /* Center the image within the circle */
 }
+
 
 /* Partner images uniform size */
 .partner-img {

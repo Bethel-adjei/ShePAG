@@ -82,9 +82,9 @@
             <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'search' %}">
                 <small class="fa fa-search text-body"></small>
             </a>
-            <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+            {% comment %} <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                 <small class="fa fa-user text-body"></small>
-            </a>
+            </a> {% endcomment %}
         </div>
     </div>
 </nav>
@@ -104,7 +104,7 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
-                <h1 class="fw-bold text-primary mb-4">S<span class="text-secondary">he</span>PAG</h1>
+                <h1 class="fw-bold text-primary mb-4"> <span class="text-secondary">She</span><span style="color: #3CB815;">PAG</span></h1>
                 <p>SHEPAG's products are loved for their high-quality, natural ingredients, sustainability, health benefits, unique African flavors, and commitment to ethical practices.</p>
                 <div class="d-flex pt-2">
 

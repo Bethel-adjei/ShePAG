@@ -8,15 +8,18 @@
 
 {% block content %}
 <div class="container-xxl" style="padding-top: 5em !important;">
-<div class="container py-5">
-    <div class="row">
-        <div class="col-lg-4">
-            <img class="img-fluid rounded-circle mb-4" src="{{ member.image.url }}" alt="{{ member.name }}">
-        </div>
-        <div class="col-lg-8">
-            <h2>{{ member.name }}</h2>
-            <h4 class="text-primary">{{ member.role }}</h4>
-            <p>{{ member.message|safe }}</p>
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-4 text-center d-flex justify-content-center align-items-center">
+                <div class="image-wrapper">
+                    <img class="img-fluid team-image mb-4" src="{{ member.image.url }}" alt="{{ member.name }}">
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <h2>{{ member.name }}</h2>
+                <h4 class="text-primary">{{ member.role }}</h4>
+                <p>{{ member.message|safe }}</p>
+            </div>
         </div>
     </div>
 </div>
