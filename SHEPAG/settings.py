@@ -139,7 +139,7 @@ EMAIL_USE_TLS = False  # Use TLS or SSL, not both
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'bethelobeng@gmail.com')  # Default email if env var not set
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'ujgn trih xqbs uqtk')  # Default empty if env var not set
-DEFAULT_FROM_EMAIL = 'joekwams123@gmail.com'
+DEFAULT_FROM_EMAIL = 'bethelobeng@gmail.com'
 
 
 

@@ -1,11 +1,17 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers,Subscriber
 from django.contrib import messages
-from django.core.mail import send_mail,EmailMultiAlternatives
+from django.core.mail import send_mail
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .forms import ContactForm,NewsletterForm,SubscribeForm
 from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from .models import Newsletter
+
+
+
 
 
 # Home page view
@@ -144,7 +150,7 @@ def testimonial(request):
     return render(request, 'testimonial.html', {'testimonials': testimonials})
 
 
-# for newsletter
+# For Newsletter
 
 def subscribe(request):
     if request.method == 'POST':
@@ -152,62 +158,49 @@ def subscribe(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             
-            # Save the email to the database
+            # Save the email to the database, creating it only if it doesn't exist
             subscriber, created = Subscriber.objects.get_or_create(email=email)
 
             if created:
-                # Send an email to the admin
+                # Notify the admin of a new subscriber
                 subject = 'New Newsletter Subscription'
                 message = f'New user subscribed with email: {email}'
                 from_email = settings.DEFAULT_FROM_EMAIL
-                recipient_list = ['joekwams123@gmail.com']  # Replace with your admin email
-                
+                recipient_list = ['joekwams123@gmail.com']  # Admin email
+
                 send_mail(subject, message, from_email, recipient_list)
-            
-            # Redirect after submission
+
+            # Redirect to a thank-you page after submission
             return redirect('subscribe_thanks')
     else:
         form = SubscribeForm()
 
     return render(request, 'subscribe.html', {'form': form})
 
-def send_newsletter(request):
-    if request.method == 'POST':
-        form = NewsletterForm(request.POST)
-        if form.is_valid():
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            from_email = form.cleaned_data['from_email']
-            
-            # Get the list of subscribers
-            subscribers = Subscriber.objects.values_list('email', flat=True)
-            
-            # Create EmailMessage instance
-            email = EmailMessage(
-                subject=subject,
-                body=message,
-                from_email=from_email,
-                to=['bethelobeng@gmail.com'],  # Replace with your own email so it only shows 'me'
-                bcc=list(subscribers)  # All recipients in BCC
-            )
-            
-            # Set content type to HTML
-            email.content_subtype = 'html'
-            
-            try:
-                email.send(fail_silently=False)
-                return redirect('newsletter_sent')
-            except Exception as e:
-                print(f"Error sending email: {e}")
-                return render(request, 'send_newsletter.html', {'form': form, 'error': 'Email could not be sent'})
 
-    else:
-        form = NewsletterForm()
+def send_newsletter(self):
+        # Strip HTML tags from the content to create a plain-text version
+        plain_message = strip_tags(self.content)
 
-    return render(request, 'send_newsletter.html', {'form': form})
+        # Collect all subscribers' email addresses
+        subscriber_emails = self.subscribers.values_list('email', flat=True)
 
+        # Create an email message with both plain-text and HTML content
+        email = EmailMessage(
+            subject=self.title,
+            body=plain_message,  # Plain text message
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[settings.DEFAULT_FROM_EMAIL],  # Only send to yourself in the "To" field
+            bcc=subscriber_emails,  # Send using BCC to hide recipients from each other
+        )
+        email.content_subtype = "html"  # Set the content type to HTML
+        email.attach_alternative(self.content, "text/html")  # Add HTML version of the content
 
-
+        try:
+            email.send(fail_silently=False)
+        except Exception as e:
+            # Log the error or handle as needed
+            print(f"Error sending newsletter: {e}")
 
 def subscribe_thanks(request):
     return render(request, 'subscribe_thanks.html')

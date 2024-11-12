@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-
+from django_summernote.fields import SummernoteTextField
 # Create your models here.
 
 
@@ -78,10 +78,14 @@ class Subscriber(models.Model):
         return self.email
 
 
+from django.core.mail import EmailMessage
+from django.utils.html import strip_tags
+from django.conf import settings
+
 class Newsletter(models.Model):
-    subject = models.CharField(max_length=255)
-    message = models.TextField()
+    title = models.CharField(max_length=200, default='No Title')
+    content = models.TextField()
+    subscribers = models.ManyToManyField(Subscriber, related_name='newsletters')
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.subject
+    

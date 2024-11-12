@@ -3,9 +3,11 @@ from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers,Subscr
 from django_summernote.widgets import SummernoteWidget 
 from django.db import models 
 from django.utils.html import mark_safe
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.utils.html import strip_tags
+from django.core.mail import EmailMessage
+
 
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
@@ -58,31 +60,43 @@ class SubscriberAdmin(admin.ModelAdmin):
 
 
 class NewsletterAdmin(admin.ModelAdmin):
-    list_display = ('subject', 'created_at')
-    
+    list_display = ('title', 'created_at')  # Display the 'title' and 'created_at' fields in the admin
+
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
 
         # Get all subscribers' email addresses
         subscribers = Subscriber.objects.values_list('email', flat=True)
 
-        # Strip HTML tags from the message (Summernote content)
-        plain_message = strip_tags(obj.message)
+        # Strip HTML tags from the content (Summernote content)
+        plain_message = strip_tags(obj.content)
 
-        # Send the newsletter to all subscribers as plain text
-        send_mail(
-            subject=obj.subject,
-            message=plain_message,  # Plain text message
+        # Create the email message object with both plain-text and HTML content
+        email = EmailMultiAlternatives(
+            subject=obj.title,  # 'title' as the subject
+            body=plain_message,  # Plain-text message
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=subscribers,
-            fail_silently=False,
+            to=[settings.DEFAULT_FROM_EMAIL],  # Send to your email in "To"
+            bcc=subscribers,  # Send using BCC to hide recipients from each other
         )
 
-    formfield_overrides = { 
-        models.TextField: {'widget': SummernoteWidget},  
+        # Add HTML content as an alternative to the plain-text message
+        email.content_subtype = "html"  # Set the content type to HTML
+        email.attach_alternative(obj.content, "text/html")  # Attach the HTML version of the content
+
+        # Try sending the email
+        try:
+            email.send(fail_silently=False)
+        except Exception as e:
+            # Log the error or handle as needed
+            print(f"Error sending newsletter: {e}")
+
+    formfield_overrides = {
+        models.TextField: {'widget': SummernoteWidget},  # Use Summernote widget for text fields
     }
 
-     
+
+
 # Register the models with their custom admin classes
 admin.site.register(Product, ProductAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
