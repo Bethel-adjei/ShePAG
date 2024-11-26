@@ -143,10 +143,6 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'mrno vsps hbkx mepw')  #
 
 DEFAULT_FROM_EMAIL = 'bethelobeng@gmail.com'
 
-# Brevo (SendinBlue) API Key
-#BREVO_API_KEY = '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'
-
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
