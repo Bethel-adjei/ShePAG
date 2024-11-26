@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404,redirect
-from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers,Subscriber
+from .models import Product, BlogPost, Testimonial, ContactUs,TeamMembers,Subscriber,Newsletter
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -8,7 +8,8 @@ from .forms import ContactForm,NewsletterForm,SubscribeForm
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from .models import Newsletter
+#import requests
+#from django.core.exceptions import ImproperlyConfigured
 
 
 
@@ -178,29 +179,44 @@ def subscribe(request):
     return render(request, 'subscribe.html', {'form': form})
 
 
-def send_newsletter(self):
-        # Strip HTML tags from the content to create a plain-text version
-        plain_message = strip_tags(self.content)
 
-        # Collect all subscribers' email addresses
-        subscriber_emails = self.subscribers.values_list('email', flat=True)
 
-        # Create an email message with both plain-text and HTML content
-        email = EmailMessage(
-            subject=self.title,
-            body=plain_message,  # Plain text message
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            to=[settings.DEFAULT_FROM_EMAIL],  # Only send to yourself in the "To" field
-            bcc=subscriber_emails,  # Send using BCC to hide recipients from each other
-        )
-        email.content_subtype = "html"  # Set the content type to HTML
-        email.attach_alternative(self.content, "text/html")  # Add HTML version of the content
+def send_newsletter(request):
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            from_email = form.cleaned_data['from_email']
 
-        try:
-            email.send(fail_silently=False)
-        except Exception as e:
-            # Log the error or handle as needed
-            print(f"Error sending newsletter: {e}")
+            # Get the list of subscribers
+            subscribers = Subscriber.objects.values_list('email', flat=True)
+
+            # Create EmailMessage instance
+            email = EmailMessage(
+                subject=subject,
+                body=message,
+                from_email=from_email,
+                to=['bethelobeng@gmail.com'],  # Send to your email as the main "to"
+                bcc=list(subscribers)  # BCC all the subscribers
+            )
+            
+            # Set the content type to HTML (since Summernote uses HTML content)
+            email.content_subtype = 'html'
+            
+            try:
+                # Send the email
+                email.send(fail_silently=False)
+                return redirect('newsletter_sent')  # Redirect to a success page
+            except Exception as e:
+                # Log or print the exception for debugging
+                print(f"Error sending email: {e}")
+                return render(request, 'send_newsletter.html', {'form': form, 'error': 'Email could not be sent'})
+    else:
+        form = NewsletterForm()
+
+    return render(request, 'send_newsletter.html', {'form': form})
+
 
 def subscribe_thanks(request):
     return render(request, 'subscribe_thanks.html')

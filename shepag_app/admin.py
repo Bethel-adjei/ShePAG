@@ -95,8 +95,6 @@ class NewsletterAdmin(admin.ModelAdmin):
         models.TextField: {'widget': SummernoteWidget},  # Use Summernote widget for text fields
     }
 
-
-
 # Register the models with their custom admin classes
 admin.site.register(Product, ProductAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)

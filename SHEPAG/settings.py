@@ -132,14 +132,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # or any other directory you prefe
 
 
 #Email settings
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False  # Use TLS or SSL, not both
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'bethelobeng@gmail.com')  # Default email if env var not set
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'ujgn trih xqbs uqtk')  # Default empty if env var not set
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'mrno vsps hbkx mepw')  # Default empty if env var not set
+
 DEFAULT_FROM_EMAIL = 'bethelobeng@gmail.com'
+
+# Brevo (SendinBlue) API Key
+#BREVO_API_KEY = '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'
 
 
 
