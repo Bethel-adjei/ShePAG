@@ -21,9 +21,11 @@ class BlogPost(models.Model):
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)  # Add image field
     published_date = models.DateTimeField(auto_now_add=True)
     reading_time = models.PositiveIntegerField(default=5)  # Add reading time (in minutes)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)  # Add author field
 
     def __str__(self):
         return self.title
+
 
 
 # Model for testimonials
@@ -36,12 +38,12 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.profession} - {self.date.strftime('%Y-%m-%d')}"
-#for contact us
 class ContactUs(models.Model):
-    name=models.CharField(max_length=200, blank=True,null=True)
-    email=models.EmailField(blank=True, null=True)
-    subject=models.CharField(max_length=500, blank=True, null=True)
-    message=models.TextField(max_length=500, blank=True,null=True)
+    name = models.CharField(max_length=200, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    subject = models.CharField(max_length=500, blank=True, null=True)
+    message = models.TextField(max_length=500, blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)  # New phone number field
     sent_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

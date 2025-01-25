@@ -20,7 +20,7 @@
                     <a class="d-block h5 lh-base mb-4" href="{% url 'blog_details' post.pk %}">{{ post.title }}</a>
                     <p>{{ post.content|truncatewords:20 | safe}}</p>
                     <div class="text-muted border-top pt-4 mt-auto"> <!-- Push footer to bottom -->
-                        <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
+                    <small class="me-3"><i class="fa fa-user text-primary me-2"></i>{{ post.author.get_full_name|default:post.author.username }}</small>
                         <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>{{ post.published_date|date:"d M, Y" }}</small>
                         <small class="me-3"><i class="fa fa-clock text-primary me-2"></i>{{ post.reading_time }} min read</small>
                     </div>

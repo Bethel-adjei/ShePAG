@@ -27,9 +27,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ("title", "published_date", "reading_time", "display_image")
+    list_display = ("title", "author","published_date", "reading_time", "display_image",)
     search_fields = ("title", "content")
-    list_filter = ("published_date",)
+    list_filter = ("author","published_date",)
 
     def display_image(self, obj):
         if obj.image:
@@ -57,6 +57,7 @@ class ContactUsAdmin(admin.ModelAdmin):
         "subject",
         "message",
         "sent_at",
+        "phone_number"
     )  # Display name, email, and phone
     search_fields = ("name", "email", "")  # Add search functionality
     list_filter = ("email",)  # Add a filter by email

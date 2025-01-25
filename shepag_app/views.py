@@ -79,31 +79,47 @@ def contact(request):
             email = form.cleaned_data['email']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
+            phone_number = form.cleaned_data['phone_number']
 
             # Save the message to the database
-            contact_message = ContactUs(
-                name=name,
-                email=email,
-                subject=subject,
-                message=message
-            )
-            contact_message.save()  # Save the message to the database
+            try:
+                contact_message = ContactUs(
+                    name=name,
+                    email=email,
+                    subject=subject,
+                    message=message,
+                    phone_number=phone_number
+                )
+                contact_message.save()  # Save the message to the database
+                print("Message saved successfully!")  # Debug message
 
-            # Create the email content
-            email_message = f"New message from {name} ({email})\n\nSubject: {subject}\n\nMessage:\n{message}"
+                # Create the email content
+                email_message = (
+                    f"New message from {name} ({email})\n\n"
+                    f"Phone Number: {phone_number}\n\n"
+                    f"Subject: {subject}\n\n"
+                    f"Message:\n{message}"
+                )
 
-            # Send email notification to the admin
-            send_mail(
-                subject=f'Contact Form Submission: {subject}',
-                message=email_message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=['joekwams123@gmail.com'],  # Replace with your admin email
-            )
+                # Send email notification to the admin
+                send_mail(
+                    subject=f'Contact Form Submission: {subject}',
+                    message=email_message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=['bethelobeng@gmail.com'],  # Replace with your admin email
+                )
 
-            # Add success message and clear form
-            messages.success(request, 'Your message has been sent successfully!')
+                # Add success message and clear form
+                messages.success(request, 'Your message has been sent successfully!')
+                return render(request, 'contact.html', {'form': ContactForm()})  # Empty form after submission
 
-            return render(request, 'contact.html', {'form': ContactForm()})  # Empty form after submission
+            except Exception as e:
+                print(f"Error saving message: {e}")
+                messages.error(request, 'There was an error saving your message. Please try again.')
+
+        else:
+            print(form.errors)  # Debugging: Show form errors
+            messages.error(request, 'Please correct the errors below.')
 
     else:
         form = ContactForm()
